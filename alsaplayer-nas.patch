@@ -14,12 +14,30 @@
  dnl ==========
 --- alsaplayer-0.99.60/output/nas/Makefile.am~	Mon Mar 25 16:43:12 2002
 +++ alsaplayer-0.99.60/output/nas/Makefile.am	Fri May  3 22:12:46 2002
+@@ -1,17 +1,8 @@
+-if HAVE_NAS
+ 
+ nas_outltlibs = libnas_out.la
+ nas_outldflags = -export-dynamic -avoid-version
+ nas_outsources = nas.c
+ 
+-else
+-
+-nas_outltlibs =
+-nas_outldflags =
+-nas_outsources =
+-
+-endif
+-
+ EXTRA_DIST = nas.c
+ 
+ lib_LTLIBRARIES = $(nas_outltlibs)
 @@ -17,7 +17,7 @@
  lib_LTLIBRARIES = $(nasltlibs)
  
  CFLAGS = -D_REENTRANT -I$(top_builddir) -I$(top_srcdir)/alsaplayer \
 -			@ARCH_CFLAGS@	
-+			@ARCH_CFLAGS@ @NAS_CFLAGS@	
++			@ARCH_CFLAGS@ @NAS_CFLAGS@ -I/usr/X11R6/include
  
  libdir = $(ADDON_DIR)/output
  
