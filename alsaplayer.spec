@@ -86,7 +86,7 @@ General features:
 - Queue (playlist) support
 - Concurrent visual scopes (open as many as you want)
 - Multi-threaded design for efficient/skip free playback (RT)
-- GUI Interface based on gtk+
+- GUI Interface based on GTK+
 - NOGUI operation for shell script usage
 - On-screen-display based on xosd
 - Plug-in core architecture
@@ -131,7 +131,7 @@ Ogólne cechy:
 - obs³uga kolejki (playlisty)
 - obs³uga wielu wska¼ników naraz
 - wielow±tkowo¶æ
-- interfejs graficzny bazuj±cy na gtk+
+- interfejs graficzny bazuj±cy na GTK+
 - operacje bez GUI na potrzeby skryptów
 - tryb Informacje-na-ekranie oparty o xosd
 - architektura wtyczek
