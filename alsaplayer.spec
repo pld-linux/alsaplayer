@@ -58,33 +58,25 @@ General features:
      Y2K complient (doh!)
 
 %prep
-
-%setup -n alsaplayer-%{version}.%{release}
-CFLAGS="$RPM_OPT_FLAGS"
-./configure --prefix=/usr
+%setup -q -n alsaplayer-%{version}.%{release}
 
 %build
+%configure
 make
 
 %install
-mkdir -p $RPM_BUILD_ROOT/usr/doc/alsaplayer-%{version}-%{release}
+rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
-cp AUTHORS COPYING INSTALL README README.ESD README.OSS $RPM_BUILD_ROOT/usr/doc/alsaplayer-%{version}-%{release}
+
+gzip -9nf AUTHORS README README.ESD README.OSS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%doc AUTHORS COPYING INSTALL README README.ESD README.OSS
-
 %files
-%defattr(-,root,root)
-/usr/bin/alsaplayer
-/usr/doc/alsaplayer-%{version}-%{release}/AUTHORS
-/usr/doc/alsaplayer-%{version}-%{release}/COPYING
-/usr/doc/alsaplayer-%{version}-%{release}/INSTALL
-/usr/doc/alsaplayer-%{version}-%{release}/README
-/usr/doc/alsaplayer-%{version}-%{release}/README.ESD
-/usr/doc/alsaplayer-%{version}-%{release}/README.OSS
+%defattr(644,root,root,755)
+%doc *.gz
+%attr(755,root,root) %{_bindir}/alsaplayer
 /usr/lib/alsaplayer/output/libalsa.a
 /usr/lib/alsaplayer/output/libalsa.la
 /usr/lib/alsaplayer/output/libalsa.so
