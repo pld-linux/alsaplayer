@@ -10,7 +10,7 @@ License:	Opensource
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
-Source0:	http://www.alsa-project.org/~andy/%{name}-%{fullver}.tar.bz2
+Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{fullver}.tar.bz
 Requires:	gtk+-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
