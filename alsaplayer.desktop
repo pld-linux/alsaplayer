@@ -8,5 +8,5 @@ Icon=alsaplayer.png
 Exec=alsaplayer
 Terminal=false
 Type=Application
-Categories=Audio;Player;
+Categories=GTK;Audio;Player;
 # vi: encoding=utf-8
