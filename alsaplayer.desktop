@@ -4,6 +4,7 @@ Name=Alsaplayer
 Naame[pl]=Alsaplayer
 Comment=MP3/OGG/FLAC/WAV/MOD/CD Player
 Comment[pl]=Odtwarzacz formatów CD/FLAC/MOD/MP3/OGG/WAV
+Icon=alsaplayer.png
 Exec=alsaplayer
 Terminal=false
 Type=Application
