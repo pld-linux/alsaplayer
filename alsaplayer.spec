@@ -1,10 +1,10 @@
 #
 # Conditional build
-%bcond_without esound		# build without esound plugin
-%bcond_without flac		# build without FLAC plugin
-%bcond_without jack		# build without jack plugin
-%bcond_without mikmod		# build without mikmod plugin
-%bcond_without nas		# build without nas plugin
+%bcond_without	esound		# build without esound plugin
+%bcond_without	flac		# build without FLAC plugin
+%bcond_without	jack		# build without jack plugin
+%bcond_without	mikmod		# build without mikmod plugin
+%bcond_without	nas		# build without nas plugin
 #
 Summary:	Alsaplayer - CD/FLAC/MOD/MP3/Ogg/WAV player
 Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
@@ -38,7 +38,7 @@ BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	xosd-devel
-Requires(post):	/sbin/ldconfig
+Requires(post,postun):	/sbin/ldconfig
 Requires:	alsaplayer_output
 Requires:	alsaplayer_ui
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
