@@ -152,17 +152,17 @@ Deamon interface for Alsaplayer.
 Interfejs demona alsaplayera.
 
 %package input-audiofile
-Summary:	Alsaplayer plugin for playing wave audio formats using audiofile
-Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu wave przy u¿yciu audiofile
+Summary:	Alsaplayer plugin for playing WAVE audio formats using audiofile
+Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy u¿yciu audiofile
 Group:		Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-audiofile
-Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
+Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
 WAVE, ...) using audiofile library.
 
 %description input-audiofile -l pl
-Wtyczka alsaplayera do odtwarzania plików audio typu wave (AIFF,
+Wtyczka alsaplayera do odtwarzania plików audio typu WAVE (AIFF,
 AIFC, WAVE, ...) przy u¿yciu biblioteki audiofile.
 
 %package input-flac
@@ -202,17 +202,17 @@ Alsaplayer plugin for playing mod files.
 Wtyczka alsaplayera do odtwarzania plików mod.
 
 %package input-sndfile
-Summary:	Alsaplayer plugin for playing wave audio formats using libsndfile
-Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu wave przy u¿yciu libsndfile
+Summary:	Alsaplayer plugin for playing WAVE audio formats using libsndfile
+Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy u¿yciu libsndfile
 Group:		Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-sndfile
-Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
+Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
 WAVE, ...) using libsndfile library.
 
 %description input-sndfile -l pl
-Wtyczka do alsaplayera do odtwarzania plików audio typu wave (AIFF,
+Wtyczka do alsaplayera do odtwarzania plików audio typu WAVE (AIFF,
 AIFC, WAVE, ...) przy u¿yciu biblioteki libsndfile.
 
 %package input-vorbis
