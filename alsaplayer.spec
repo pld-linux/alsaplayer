@@ -1,5 +1,5 @@
-Summary:	Alsaplayer
-Summary(pl):	Alsaplayer
+Summary:	Alsaplayer - MP2/MP3/WAV/CD player
+Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.31
 Release:	2
@@ -68,6 +68,41 @@ General features:
  - Portable (well, we'll see about that :)
  - Open source(tm)
 
+%description -l pl
+AlsaPlayer to nowy rodzaj odtwarzacza PCM. Jest wielow±tkowy i próbuje
+solidnie przeæwiczyæ sterowniki i bibliotekê ALSA. Jego cechy to:
+
+Wej¶cie:
+ - obs³uga MP2 i MP3
+ - obs³uga WAV, 8 i 16-bitowych, mono, stereo, dowolna czêstotliwo¶æ
+ - obs³uga CD Digital Audio
+ - odtwarzanie plików podmapowanych przez audiofs (CDDA)
+ - wkrótce obs³uga modu³ów...
+
+Wyj¶cie:
+ - ALSA - oczywi¶cie najlepiej obs³ugiwana :)
+ - OSS - natywne sterowniki z j±dra
+ - Sparc - sterowniki d¼wiêku dla UltraSparca
+ - SGI - biblioteka sterowników d¼wiêku SGI
+ - ESD - obs³uga O¶wieconego demona d¼wiêku
+
+Wizualizacja:
+ - Stereoskop
+ - Monoskop
+ - Wska¼nik poziomu d¼wiêku
+ - inne, wkrótce wiêcej...
+
+Ogólne cechy:
+ - Kontrola szybko¶ci (w obie strony)
+ - obs³uga kolejki (playlisty)
+ - obs³uga wielu wska¼ników naraz
+ - wielow±tkowo¶æ
+ - interfejs graficzny bazuj±cy na gtk+
+ - operacje bez GUI na potrzeby skryptów
+ - architektura wtyczek
+ - programowa kontrola g³o¶no¶ci i balansu
+ - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
+
 %prep
 %setup -q
 
@@ -91,4 +126,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/alsaplayer
-%{_pkglibdir}/
+%{_pkglibdir}
