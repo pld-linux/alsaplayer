@@ -236,33 +236,53 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/alsaplayer
 %dir %{_pkglibdir}
 %dir %{_pkglibdir}/input
-%{_pkglibdir}/input/libcdda.*
-%{_pkglibdir}/input/libwav.*
-%{_pkglibdir}/input/libmad_in.*
+%attr(755,root,root) %{_pkglibdir}/input/libcdda.so
+%{_pkglibdir}/input/libcdda.la
+%attr(755,root,root) %{_pkglibdir}/input/libwav.so
+%{_pkglibdir}/input/libwav.la
+%attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
+%{_pkglibdir}/input/libmad_in.la
 %dir %{_pkglibdir}/output
-%{_pkglibdir}/output/liboss.*
-%{_pkglibdir}/output/libnull.*
+%attr(755,root,root) %{_pkglibdir}/output/liboss.so
+%{_pkglibdir}/output/liboss.la
+%attr(755,root,root) %{_pkglibdir}/output/libnull.so
+%{_pkglibdir}/output/libnull.la
 %ifarch sparc
-%{_pkglibdir}/output/libsparc.*
+%attr(755,root,root) %{_pkglibdir}/output/libsparc.so
+%{_pkglibdir}/output/libsparc.la
 %endif
-%{_pkglibdir}/interface/lib*.*
-%{_pkglibdir}/scopes/lib*.*
+%attr(755,root,root) %{_pkglibdir}/interface/lib*.so
+%{_pkglibdir}/interface/lib*.la
+%attr(755,root,root) %{_pkglibdir}/scopes/lib*.sp
+%{_pkglibdir}/scopes/lib*.la
 %{_mandir}/man*/*
 
 %files input-mikmod
-%{_pkglibdir}/input/libmod.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libmod.so
+%{_pkglibdir}/input/libmod.la
 
 %files input-vorbis
-%{_pkglibdir}/input/libvorbis_in.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libvorbis_in.so
+%{_pkglibdir}/input/libvorbis_in.la
 
 %files input-audiofile
-%{_pkglibdir}/input/libaf.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libaf.so
+%{_pkglibdir}/input/libaf.la
 
 %files output-alsa
-%{_pkglibdir}/output/libalsa.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libalsa.so
+%{_pkglibdir}/output/libalsa.la
 
 %files output-esound
-%{_pkglibdir}/output/libesound.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libesound.so
+%{_pkglibdir}/output/libesound.la
 
 %files output-nas
-%{_pkglibdir}/output/libnas.*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libnas.so
+%{_pkglibdir}/output/libnas.la
