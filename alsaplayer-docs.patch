@@ -1,9 +1,9 @@
---- alsaplayer-0.99.60/Makefile.am~	Tue Apr 30 15:05:52 2002
-+++ alsaplayer-0.99.60/Makefile.am	Fri May  3 22:36:31 2002
+--- alsaplayer-0.99.71/Makefile.am.orig	Mon Jun 10 22:51:09 2002
++++ alsaplayer-0.99.71/Makefile.am	Wed Jul 10 05:25:55 2002
 @@ -1,5 +1,5 @@
  AUTOMAKE_OPTIONS = foreign
 -SUBDIRS = interface output input scopes app alsaplayer extra docs \
 +SUBDIRS = interface output input scopes app alsaplayer extra \
- 	libalsaplayer examples m4
+ 	libalsaplayer examples m4 reader
  
  EXTRA_DIST = bootstrap
