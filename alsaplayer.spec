@@ -158,7 +158,7 @@ Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
 WAVE, ...).
 
 %description input-audiofile -l pl
-Wtyczka do alsaplayera do odtwarzania plików audio typa wave (AIFF,
+Wtyczka do alsaplayera do odtwarzania plików audio typu wave (AIFF,
 AIFC, WAVE, ...)
 
 %package input-mad
@@ -216,7 +216,6 @@ daemon.
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 (network audio system).
 
-
 #%package reader-curl
 #Summary:	Alsaplayer plugin for reading files from network
 #Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
@@ -239,7 +238,7 @@ Requires:	%{name} = %{version}
 Alsaplayer plugin for visualization.
 
 %description scopes-gtk -l pl
-tyczka do alsaplayera do wizualizacji.
+Wtyczka do alsaplayera do wizualizacji.
 
 %package scopes-opengl
 Summary:	Alsaplayer plugin for visualization using OpenGL
@@ -267,7 +266,7 @@ Interfejs GTK+ alsaplayera.
 
 %package lib
 Summary:	Library for remote control Alsaplayer
-Summary(pl):	Biblioteka do zdalnego staerowania alsaplayerem
+Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
@@ -275,11 +274,11 @@ Requires:	%{name} = %{version}
 Library for remote control Alsaplayer.
 
 %description lib -l pl
-Biblioteka do zdalnego staerowania alsaplayerem.
+Biblioteka do zdalnego sterowania alsaplayerem.
 
 %package devel
 Summary:	Library for remote control Alsaplayer - development files
-Summary(pl):	Biblioteka do zdalnego staerowania alsaplayerem - pliki nag³ówkowe
+Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe
 Group:		X11/Applications/Multimedia
 Requires:	%{name}-lib = %{version}
 
@@ -287,7 +286,7 @@ Requires:	%{name}-lib = %{version}
 Library for remote control Alsaplayer - development files.
 
 %description devel
-Biblioteka do zdalnego staerowania alsaplayerem - pliki nag³ówkowe.
+Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
 
 %prep
 %setup -q
