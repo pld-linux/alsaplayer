@@ -10,7 +10,6 @@ BuildRequires:  alsa-lib-devel
 BuildRequires:  esound-devel
 BuildRequires:  audiofile-devel
 BuildRequires:  libmikmod-devel
-BuildRequires:	glib-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
