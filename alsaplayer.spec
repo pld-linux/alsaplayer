@@ -38,7 +38,7 @@ BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	xosd-devel
-Requires(post,postun):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
 Requires:	alsaplayer_output
 Requires:	alsaplayer_ui
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -143,7 +143,7 @@ Ogólne cechy:
 Summary:	Deamon interface for Alsaplayer
 Summary(pl):	Interfejs demona alsaplayera
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description daemon
 Deamon interface for Alsaplayer.
@@ -155,7 +155,7 @@ Interfejs demona alsaplayera.
 Summary:	Alsaplayer plugin for playing WAVE audio formats using audiofile
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy u¿yciu audiofile
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-audiofile
 Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
@@ -169,7 +169,7 @@ AIFC, WAVE, ...) przy u¿yciu biblioteki audiofile.
 Summary:	Alsaplayer plugin for playing FLAC files
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików FLAC
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-flac
 Alsaplayer plugin for playing FLAC files.
@@ -181,7 +181,7 @@ Wtyczka alsaplayera do odtwarzania plików FLAC.
 Summary:	Alsaplayer plugin for playing MP3 files using MAD
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików MP3 przy pomocy MAD
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-mad
 Alsaplayer plugin for playing MP3 files using MAD.
@@ -193,7 +193,7 @@ Wtyczka alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
 Summary:	Alsaplayer plugin for playing mod files
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików mod
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-mikmod
 Alsaplayer plugin for playing mod files.
@@ -205,7 +205,7 @@ Wtyczka alsaplayera do odtwarzania plików mod.
 Summary:	Alsaplayer plugin for playing WAVE audio formats using libsndfile
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy u¿yciu libsndfile
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-sndfile
 Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
@@ -219,7 +219,7 @@ AIFC, WAVE, ...) przy u¿yciu biblioteki libsndfile.
 Summary:	Alsaplayer plugin for playing Ogg/Vorbis files
 Summary(pl):	Wtyczka alsaplayera do odtwarzania plików Ogg/Vorbis
 Group:		Applications/Sound
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description input-vorbis
 Alsaplayer plugin for playing Ogg/Vorbis files.
@@ -231,8 +231,8 @@ Wtyczka alsaplayera do odtwarzania plików Ogg/Vorbis.
 Summary:	GTK+ interface for Alsaplayer
 Summary(pl):	Interfejs GTK+ alsaplayera
 Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_ui
-Requires:	%{name} = %{version}
 
 %description interface-gtk
 GTK+ interface for Alsaplayer.
@@ -244,8 +244,8 @@ Interfejs GTK+ alsaplayera.
 Summary:	Text interface for Alsaplayer
 Summary(pl):	Interfejs tekstowy alsaplayera
 Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_ui
-Requires:	%{name} = %{version}
 
 %description interface-text
 Text interface for Alsaplayer.
@@ -257,8 +257,8 @@ Interfejs tekstowy alsaplayera.
 Summary:	xosd interface for Alsaplayer
 Summary(pl):	Interfejs xosd alsaplayera
 Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_ui
-Requires:	%{name} = %{version}
 
 %description interface-xosd
 xosd interface for Alsaplayer.
@@ -270,8 +270,8 @@ Interfejs xosd alsaplayera.
 Summary:	Alsaplayer plugin for playing through alsa drivers
 Summary(pl):	Wtyczka alsaplayera do odtwarzania przez sterowniki alsa
 Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_output
-Requires:	%{name} = %{version}
 
 %description output-alsa
 Alsaplayer plugin for playing sound through alsa drivers.
@@ -283,8 +283,8 @@ Wtyczka alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
 Summary:	Alsaplayer plugin for playing through esound daemon
 Summary(pl):	Wtyczka alsaplayera do odtwarzania przez demona esound
 Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_output
-Requires:	%{name} = %{version}
 
 %description output-esound
 Alsaplayer plugin for playing sound through esound daemon.
@@ -296,8 +296,8 @@ Wtyczka alsaplayera do odtwarzania d¼wiêku przez demona esound.
 Summary:	Alsaplayer plugin for playing through NAS daemon
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
 Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_output
-Requires:	%{name} = %{version}
 
 %description output-nas
 Alsaplayer plugin for playing sound through NAS (network audio system)
@@ -311,8 +311,8 @@ audio system).
 Summary:	Alsaplayer plugin for playing sound through JACK
 Summary(pl):	Wtyczka alsaplayera do odtwarzania d¼wiêku przez JACK-a
 Group:		Applications/Sound
+Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_output
-Requires:	%{name} = %{version}
 
 %description output-jack
 Alsaplayer plugin for sound through JACK system.
@@ -324,7 +324,7 @@ Wtyczka alsaplayera do odtwarzania d¼wiêku przez system JACK.
 Summary:	Alsaplayer plugins for visualization
 Summary(pl):	Wtyczki alsaplayera do wizualizacji
 Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description scopes-gtk
 Alsaplayer plugins for visualization.
@@ -336,7 +336,7 @@ Wtyczki do alsaplayera do wizualizacji.
 Summary:	Alsaplayer plugin for visualization using OpenGL
 Summary(pl):	Wtyczka alsaplayera do wizualizacji z u¿yciem OpenGL
 Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL
 
 %description scopes-opengl
@@ -349,7 +349,7 @@ Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
 Summary:	Alsaplayer header files
 Summary(pl):	Pliki nag³ówkowe Alsaplayera
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for Alsaplayer library.
@@ -361,7 +361,7 @@ Pliki nag³ówkowe biblioteki Alsaplayera.
 Summary:	Alsaplayer static library
 Summary(pl):	Biblioteka statyczna Alsaplayera
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Alsaplayer static library.
