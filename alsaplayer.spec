@@ -10,7 +10,7 @@ Summary:	Alsaplayer - CD/FLAC/MOD/MP3/OGG/WAV player
 Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/OGG/WAV
 Name:		alsaplayer
 Version:	0.99.76
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -397,10 +397,7 @@ export CPPFLAGS LDFLAGS
 	--enable-oggvorbis \
 	--enable-opengl \
 	--enable-oss \
-	--enable-static \
-%ifarch sparc
-	--enable-sparc
-%endif
+	--enable-static
 
 %{__make}
 
@@ -454,10 +451,6 @@ echo
 %{_mandir}/man*/*
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
-
-%ifarch sparc
-%attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
-%endif
 
 %files daemon
 %defattr(644,root,root,755)
