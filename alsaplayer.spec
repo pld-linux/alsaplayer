@@ -14,6 +14,7 @@ BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	libvorbis-devel
+BuildRequires:	mad-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libtool
 BuildRequires:	automake
