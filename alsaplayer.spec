@@ -2,7 +2,7 @@ Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.70
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -17,7 +17,9 @@ BuildRequires:	gtk+-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	mad-devel
+%ifnarch ppc
 BuildRequires:	nas-devel
+%endif
 BuildRequires:	libtool
 BuildRequires:	automake
 BuildRequires:	autoconf
@@ -284,7 +286,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
 %{_pkglibdir}/output/libesound_out.la
 
+%ifnarch ppc
 %files output-nas
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
 %{_pkglibdir}/output/libnas_out.la
+%endif
