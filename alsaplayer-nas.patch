@@ -1,0 +1,25 @@
+--- alsaplayer-0.99.60/configure.ac~	Fri May  3 22:13:21 2002
++++ alsaplayer-0.99.60/configure.ac	Fri May  3 22:13:13 2002
+@@ -363,9 +363,10 @@
+ 
+ oldcflags=$CFLAGS
+ CFLAGS="$CFLAGS -I$x_includes -L$x_libraries -lXt"
+-AC_CHECK_LIB(audio,AuStartFlow, [have_nas=yes NAS_LIB="-L$x_libraries -laudio -lXt"], have_nas=no)
++AC_CHECK_LIB(audio,AuStartFlow, [have_nas=yes NAS_LIB="-L$x_libraries -laudio -lXt" NAS_CFLAGS="-I/usr/X11R6/include"], have_nas=no)
+ CFLAGS=$oldcflags
+ AC_SUBST(NAS_LIB)
++AC_SUBST(NAS_CFLAGS)
+ 
+ 
+ dnl ==========
+--- alsaplayer-0.99.60/output/nas/Makefile.am~	Mon Mar 25 16:43:12 2002
++++ alsaplayer-0.99.60/output/nas/Makefile.am	Fri May  3 22:12:46 2002
+@@ -17,7 +17,7 @@
+ lib_LTLIBRARIES = $(nasltlibs)
+ 
+ CFLAGS = -D_REENTRANT -I$(top_builddir) -I$(top_srcdir)/alsaplayer \
+-			@ARCH_CFLAGS@	
++			@ARCH_CFLAGS@ @NAS_CFLAGS@	
+ 
+ libdir = $(ADDON_DIR)/output
+ 
