@@ -14,6 +14,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
+# Source0-md5:	a13993ee322698b57c5311f4fb09d310
 Patch1:		%{name}-docs.patch
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
