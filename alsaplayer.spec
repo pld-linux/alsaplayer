@@ -1,13 +1,22 @@
+#
+# Conditional build
+%bcond_without esound		# build without esound plugin
+%bcond_without flac		# build without flac plugin
+%bcond_without jack		# build without jack plugin
+%bcond_without mikmod		# build without mikmod plugin
+%bcond_without nas		# build without nas plugin
+#
 Summary:	Alsaplayer - CD/FLAC/MOD/MP3/OGG/WAV player
 Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/OGG/WAV
 Name:		alsaplayer
 Version:	0.99.76
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 # Source0-md5:	a5566c15dbae1f5c86a08482eb405725
 Source1:	%{name}.desktop
+Source2:	%{name}.png
 Patch0:		%{name}-docs.patch
 Patch1:		%{name}-gcc33.patch
 URL:		http://www.alsaplayer.org/
@@ -16,20 +25,22 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	esound-devel
-BuildRequires:	flac-devel
+%{?with_esound:BuildRequires:	esound-devel}
+%{?with_flac:BuildRequires:	flac-devel}
 BuildRequires:	gtk+-devel
-BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1
-#BuildRequires:	libid3tag-devel	- checked for but not used (yet?)
+%{?with_jack:BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1}
+%{?with_flac:BuildRequires:	libid3tag-devel}
 BuildRequires:	libmad-devel
-BuildRequires:	libmikmod-devel
+%{?with_mikmod:BuildRequires:	libmikmod-devel}
 BuildRequires:	libsndfile-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
-BuildRequires:	nas-devel
+%{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	xosd-devel
 Requires(post):	/sbin/ldconfig
+Requires:	alsaplayer_output
+Requires:	alsaplayer_ui
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -220,6 +231,7 @@ Wtyczka alsaplayera do odtwarzania plików ogg/vorbis.
 Summary:	GTK+ interface for Alsaplayer
 Summary(pl):	Interfejs GTK+ alsaplayera
 Group:		X11/Applications/Sound
+Provides:	alsaplayer_ui
 Requires:	%{name} = %{version}
 
 %description interface-gtk
@@ -232,6 +244,7 @@ Interfejs GTK+ alsaplayera.
 Summary:	Text interface for Alsaplayer
 Summary(pl):	Interfejs tekstowy alsaplayera
 Group:		Applications/Sound
+Provides:	alsaplayer_ui
 Requires:	%{name} = %{version}
 
 %description interface-text
@@ -244,6 +257,7 @@ Interfejs tekstowy alsaplayera.
 Summary:	xosd interface for Alsaplayer
 Summary(pl):	Interfejs xosd alsaplayera
 Group:		X11/Applications/Sound
+Provides:	alsaplayer_ui
 Requires:	%{name} = %{version}
 
 %description interface-xosd
@@ -256,6 +270,7 @@ Interfejs xosd alsaplayera.
 Summary:	Alsaplayer plugin for playing through alsa drivers
 Summary(pl):	Wtyczka alsaplayera do odtwarzania przez sterowniki alsa
 Group:		Applications/Sound
+Provides:	alsaplayer_output
 Requires:	%{name} = %{version}
 
 %description output-alsa
@@ -268,6 +283,7 @@ Wtyczka alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
 Summary:	Alsaplayer plugin for playing through esound daemon
 Summary(pl):	Wtyczka alsaplayera do odtwarzania przez demona esound
 Group:		Applications/Sound
+Provides:	alsaplayer_output
 Requires:	%{name} = %{version}
 
 %description output-esound
@@ -280,6 +296,7 @@ Wtyczka alsaplayera do odtwarzania d¼wiêku przez demona esound.
 Summary:	Alsaplayer plugin for playing through NAS daemon
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
 Group:		Applications/Sound
+Provides:	alsaplayer_output
 Requires:	%{name} = %{version}
 
 %description output-nas
@@ -294,6 +311,7 @@ audio system).
 Summary:	Alsaplayer plugin for playing sound through JACK
 Summary(pl):	Wtyczka alsaplayera do odtwarzania d¼wiêku przez JACK
 Group:		Applications/Sound
+Provides:	alsaplayer_output
 Requires:	%{name} = %{version}
 
 %description output-jack
@@ -366,14 +384,15 @@ CPPFLAGS=" -I/usr/X11R6/include"
 LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib"
 export CPPFLAGS LDFLAGS
 %configure \
+	%{?with_esound:--en}%{!?with_esound:--dis}able-esd \
+	%{?with_flac:--en}%{!?with_flac:--dis}able-flac \
+	%{?with_jack:--en}%{!?with_jack:--dis}able-jack \
+	%{?with_mikmod:--en}%{!?with_mikmod:--dis}able-mikmod \
+	%{?with_nas:--en}%{!?with_nas:--dis}able-nas \
+	%{?with_esound:--en}%{!?with_esound:--dis}able-esd \
 	--enable-alsa \
 	--enable-audiofile \
-	--enable-esd \
-	--enable-flac \
 	--enable-gtk \
-	--enable-jack \
-	--enable-mikmod \
-	--enable-nas \
 	--enable-oggflac \
 	--enable-oggvorbis \
 	--enable-opengl \
@@ -387,13 +406,14 @@ export CPPFLAGS LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
 install -c %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install -c %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
@@ -404,7 +424,14 @@ rm -f $RPM_BUILD_ROOT%{_pkglibdir}/scopes/*.{a,la}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+echo
+echo "Remember to install appropriate alsaplayer-input-* plugins"
+echo "for files you want to play, for example:"
+echo "alsaplayer-input-mad to play mp3s."
+echo
+
 %postun -p /sbin/ldconfig
 
 %files
@@ -426,6 +453,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/reader/libhttp.so
 %{_mandir}/man*/*
 %{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
 
 %ifarch sparc
 %attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
@@ -451,17 +479,21 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libaf.so
 
+%if %{with flac}
 %files input-flac
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libflac_in.so
+%endif
 
 %files input-mad
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
 
+%if %{with mikmod}
 %files input-mikmod
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libmod.so
+%endif
 
 %files input-sndfile
 %defattr(644,root,root,755)
@@ -475,17 +507,23 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
 
+%if %{with esound}
 %files output-esound
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
+%endif
 
+%if %{with jack}
 %files output-jack
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libjack_out.so
+%endif
 
+%if %{with nas}
 %files output-nas
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
+%endif
 
 %files scopes-gtk
 %defattr(644,root,root,755)
