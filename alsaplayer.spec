@@ -253,7 +253,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %attr(755,root,root) %{_pkglibdir}/interface/lib*.so
 %{_pkglibdir}/interface/lib*.la
-%attr(755,root,root) %{_pkglibdir}/scopes/lib*.sp
+%attr(755,root,root) %{_pkglibdir}/scopes/lib*.so
 %{_pkglibdir}/scopes/lib*.la
 %{_mandir}/man*/*
 
