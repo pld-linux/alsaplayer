@@ -1,0 +1,12 @@
+diff -urN alsaplayer-0.99.52-cvs20011126-jack/app/Main.cpp alsaplayer-0.99.52-cvs20011126-jack-new/app/Main.cpp
+--- alsaplayer-0.99.52-cvs20011126-jack/app/Main.cpp	Thu Jan 24 12:45:46 2002
++++ alsaplayer-0.99.52-cvs20011126-jack-new/app/Main.cpp	Thu Jan 24 13:06:45 2002
+@@ -47,6 +47,8 @@
+ #include "utilities.h"
+ #include "error.h"
+ 
++#include <cstdarg>
++
+ Playlist * playlist = NULL;
+ 
+ int global_reverb_on = 0;
