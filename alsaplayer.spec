@@ -1,5 +1,5 @@
 # TODO:
-# - fix description 
+# - fix description
 # ** mpg123 plugin are removed, so alsaplayer play mp3 only via mad plugin
 # ** add info about new subpackages (scopes, interface-gtk and others)
 # - add output-jack plugin (requires jackit.sf.net)
@@ -132,7 +132,7 @@ Requires:	%{name} = %{version}
 %description input-mikmod
 Alsaplayer plugin for playing mod files.
 
-%description input-mikmod -l pl 
+%description input-mikmod -l pl
 Wtyczka do alsaplayera do odtwarzania plików mod.
 
 %package input-vorbis
@@ -144,7 +144,7 @@ Requires:	%{name} = %{version}
 %description input-vorbis
 Alsaplayer plugin for playing ogg/vorbis files.
 
-%description input-vorbis -l pl 
+%description input-vorbis -l pl
 Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
 
 %package input-audiofile
@@ -157,12 +157,12 @@ Requires:	%{name} = %{version}
 Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
 WAVE, ...).
 
-%description input-audiofile -l pl 
+%description input-audiofile -l pl
 Wtyczka do alsaplayera do odtwarzania plików audio typa wave (AIFF,
 AIFC, WAVE, ...)
 
 %package input-mad
-Summary:	Alsaplayer plugin for playing MP3 files using MAD 
+Summary:	Alsaplayer plugin for playing MP3 files using MAD
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
@@ -170,7 +170,7 @@ Requires:	%{name} = %{version}
 %description input-mad
 Alsaplayer plugin for playing MP3 files using MAD.
 
-%description input-mad -l pl 
+%description input-mad -l pl
 Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
 
 %package output-alsa
@@ -180,15 +180,15 @@ Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
 # what we do want :-)
 
 Summary:	Alsaplayer plugin for playing through alsa drivers
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez drivery alsa
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez sterowniki alsa
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description output-alsa
 Alsaplayer plugin for playing sound through alsa drivers.
 
-%description output-alsa -l pl 
-Wtyczka do alsaplayera do odtwarzania d¼wiêku przez drivery alsa.
+%description output-alsa -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
 
 %package output-esound
 Summary:	Alsaplayer plugin for playing through esound daemon
@@ -199,7 +199,7 @@ Requires:	%{name} = %{version}
 %description output-esound
 Alsaplayer plugin for playing sound through esound daemon.
 
-%description output-esound -l pl 
+%description output-esound -l pl
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona esound.
 
 %package output-nas
@@ -209,12 +209,13 @@ Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description output-nas
-Alsaplayer plugin for playing sound through NAS (network audio
-system) daemon.
+Alsaplayer plugin for playing sound through NAS (network audio system)
+daemon.
 
-%description output-nas -l pl 
+%description output-nas -l pl
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 (network audio system).
+
 
 #%package reader-curl
 #Summary:	Alsaplayer plugin for reading files from network
@@ -225,48 +226,68 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 #%description reader-curl
 #Alsaplayer plugin for reading files from network.
 #
-#%description reader-curl -l pl 
+#%description reader-curl -l pl
 #Wtyczka do alsaplayera do odczytu plików z sieci.
 
 %package scopes-gtk
 Summary:	Alsaplayer plugin for visualization
+Summary(pl):	Wtyczka do alsaplayera do wizualizacji
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description scopes-gtk
 Alsaplayer plugin for visualization.
 
+%description scopes-gtk -l pl
+tyczka do alsaplayera do wizualizacji.
+
 %package scopes-opengl
 Summary:	Alsaplayer plugin for visualization using OpenGL
+Summary(pl):	Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description scopes-opengl
 Alsaplayer plugin for visualization using OpenGL.
 
+%description scopes-opengl -l pl
+Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
+
 %package interface-gtk
 Summary:	GTK+ interface for Alsaplayer
+Summary(pl):	Interfejs GTK+ alsaplayera
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description interface-gtk
 GTK+ interface for Alsaplayer.
 
+%description interface-gtk -l pl
+Interfejs GTK+ alsaplayera.
+
 %package lib
 Summary:	Library for remote control Alsaplayer
+Summary(pl):	Biblioteka do zdalnego staerowania alsaplayerem
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
 %description lib
 Library for remote control Alsaplayer.
 
+%description lib -l pl
+Biblioteka do zdalnego staerowania alsaplayerem.
+
 %package devel
 Summary:	Library for remote control Alsaplayer - development files
+Summary(pl):	Biblioteka do zdalnego staerowania alsaplayerem - pliki nag³ówkowe
 Group:		X11/Applications/Multimedia
 Requires:	%{name}-lib = %{version}
 
 %description devel
-Library for remote control Alsaplayer - development files
+Library for remote control Alsaplayer - development files.
+
+%description devel
+Biblioteka do zdalnego staerowania alsaplayerem - pliki nag³ówkowe.
 
 %prep
 %setup -q
@@ -292,7 +313,7 @@ export CPPFLAGS LDFLAGS
 	--enable-oggvorbis \
 	--enable-opengl \
 	--enable-oss \
-%ifarch sparc	
+%ifarch sparc
 	--enable-sparc
 %endif
 
@@ -346,6 +367,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkglibdir}/interface/libgtk.la
 
 %files scopes-gtk
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/scopes/libblurscope.so
 %{_pkglibdir}/scopes/libblurscope.la
 %attr(755,root,root) %{_pkglibdir}/scopes/liblevelmeter.so
@@ -360,6 +382,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkglibdir}/scopes/libsynaescope.la
 
 %files scopes-opengl
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/scopes/liboglspectrum.so
 %{_pkglibdir}/scopes/liboglspectrum.la
 
@@ -379,6 +402,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkglibdir}/input/libaf.la
 
 %files input-mad
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
 %{_pkglibdir}/input/libmad_in.la
 
@@ -403,9 +427,11 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
 
 %files lib
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
 
 %files devel
+%defattr(644,root,root,755)
 %{_includedir}/alsaplayer
 %{_libdir}/libalsaplayer.la
 %{_libdir}/libalsaplayer.so
