@@ -68,7 +68,7 @@ General features:
 %setup -q
 
 %build
-%configure
+%configure2_13
 %{__make}
 
 %install
