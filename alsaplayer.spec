@@ -1,33 +1,40 @@
 # TODO:
 # - fix description
-# ** mpg123 plugin are removed, so alsaplayer play mp3 only via mad plugin
-# ** add info about new subpackages (scopes, interface-gtk and others)
-# - add output-jack plugin (requires jackit.sf.net)
-# - add input-flac plugin (requires flac.sf.net)
-# - think about static libalsaplayer.a (add --enable-static to %%configure and make subpackage)
+# - add info about new subpackages (scopes, interface-gtk and others)
+# - are static libs really need?
 # - add/check translations
+# - fix descritions in static package (new)
+# - add .desktop file (maybe icon too?)
+# - interface-daemon - maybe other name will be better
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.74
-Release:	1
+Version:	0.99.75
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
-# Source0-md5:	a13993ee322698b57c5311f4fb09d310
-Patch1:		%{name}-docs.patch
-BuildRequires:	alsa-lib-devel
-BuildRequires:	audiofile-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	esound-devel
-BuildRequires:	gtk+-devel
-BuildRequires:	libmikmod-devel
-BuildRequires:	libtool
-BuildRequires:	libvorbis-devel >= 1:1.0
-BuildRequires:	mad-devel
-BuildRequires:	nas-devel
-BuildRequires:	OpenGL-devel
+# Source0-md5:	353b57058e05aa5f0c01f93fc049c650
+Patch0:		%{name}-docs.patch
+Patch1:		%{name}-gcc33.patch
+URL:		http://www.alsaplayer.org/
+BuildRequires:  OpenGL-devel
+BuildRequires:  alsa-lib-devel
+BuildRequires:  audiofile-devel
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  esound-devel
+BuildRequires:  flac-devel
+BuildRequires:  gtk+-devel
+BuildRequires:  jack-audio-connection-kit-devel >= 0.69.1
+BuildRequires:  libmikmod-devel
+BuildRequires:  libsndfile-devel
+BuildRequires:  libtool
+BuildRequires:  libvorbis-devel
+BuildRequires:  mad-devel
+BuildRequires:  nas-devel
+BuildRequires:  xosd-devel
+Requires:	%{name}-lib-%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -120,30 +127,6 @@ Ogólne cechy:
  - programowa kontrola g³o¶no¶ci i balansu
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
-%package input-mikmod
-Summary:	Alsaplayer plugin for playing mod files
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików mod
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description input-mikmod
-Alsaplayer plugin for playing mod files.
-
-%description input-mikmod -l pl
-Wtyczka do alsaplayera do odtwarzania plików mod.
-
-%package input-vorbis
-Summary:	Alsaplayer plugin for playing ogg/vorbis files
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description input-vorbis
-Alsaplayer plugin for playing ogg/vorbis files.
-
-%description input-vorbis -l pl
-Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
-
 %package input-audiofile
 Summary:	Alsaplayer plugin for playing wave audio formats
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików audio typu wave
@@ -158,6 +141,30 @@ WAVE, ...).
 Wtyczka do alsaplayera do odtwarzania plików audio typu wave (AIFF,
 AIFC, WAVE, ...)
 
+%package input-flac
+Summary:        Alsaplayer plugin for playing FLAC files
+Summary(pl):    Wtyczka do alsaplayera do odtwarzania plików FLAC
+Group:          X11/Applications/Sound
+Requires:       %{name} = %{version}
+
+%description input-flac
+Alsaplayer plugin for playing FLAC files.
+
+%description input-flac -l pl
+Wtyczka do alsaplayera do odtwarzania plików FLAC.
+
+%package output-jack
+Summary:        Alsaplayer plugin for playing sound through JACK
+Summary(pl):    Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
+Group:          X11/Applications/Sound
+Requires:       %{name} = %{version}
+
+%description output-jack
+Alsaplayer plugin for sound through JACK
+
+%description output-jack -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
+
 %package input-mad
 Summary:	Alsaplayer plugin for playing MP3 files using MAD
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD
@@ -170,12 +177,46 @@ Alsaplayer plugin for playing MP3 files using MAD.
 %description input-mad -l pl
 Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
 
-%package output-alsa
-# this plugin come in two versions, for alsa 0.5.x and 0.9.x
-# but this libraries provide different .so number, so the
-# version built will work only with correct alsa-lib version,
-# what we do want :-)
+%package input-mikmod
+Summary:	Alsaplayer plugin for playing mod files
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików mod
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
 
+%description input-mikmod
+Alsaplayer plugin for playing mod files.
+
+%description input-mikmod -l pl
+Wtyczka do alsaplayera do odtwarzania plików mod.
+
+%package input-sndfile
+Summary:        Alsaplayer plugin for playing wave audio formats
+Summary(pl):    Wtyczka do alsaplayera do odtwarzania plików audio typu wave
+Group:          X11/Applications/Sound
+Requires:       %{name} = %{version}
+
+%description input-sndfile
+Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
+WAVE, ...).
+
+%description input-sndfile -l pl
+Wtyczka do alsaplayera do odtwarzania plików audio typu wave (AIFF,
+AIFC, WAVE, ...)
+
+%package input-vorbis
+Summary:	Alsaplayer plugin for playing ogg/vorbis files
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description input-vorbis
+Alsaplayer plugin for playing ogg/vorbis files.
+
+%description input-vorbis -l pl
+Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
+
+
+%package output-alsa
 Summary:	Alsaplayer plugin for playing through alsa drivers
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez sterowniki alsa
 Group:		X11/Applications/Sound
@@ -213,18 +254,6 @@ daemon.
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 (network audio system).
 
-#%package reader-curl
-#Summary:	Alsaplayer plugin for reading files from network
-#Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
-#Group:		X11/Applications/Sound
-#Requires:	%{name} = %{version}
-#
-#%description reader-curl
-#Alsaplayer plugin for reading files from network.
-#
-#%description reader-curl -l pl
-#Wtyczka do alsaplayera do odczytu plików z sieci.
-
 %package scopes-gtk
 Summary:	Alsaplayer plugin for visualization
 Summary(pl):	Wtyczka do alsaplayera do wizualizacji
@@ -249,6 +278,18 @@ Alsaplayer plugin for visualization using OpenGL.
 %description scopes-opengl -l pl
 Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
 
+%package interface-daemon
+Summary:	Deamon interface for Alsaplayer
+Summary(pl):	Interfejs demona alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description interface-daemon
+Deamon interface for Alsaplayer.
+
+%description interface-daemon -l pl
+Interfejs demona alsaplayera.
+
 %package interface-gtk
 Summary:	GTK+ interface for Alsaplayer
 Summary(pl):	Interfejs GTK+ alsaplayera
@@ -260,6 +301,30 @@ GTK+ interface for Alsaplayer.
 
 %description interface-gtk -l pl
 Interfejs GTK+ alsaplayera.
+
+%package interface-text
+Summary:	Text interface for Alsaplayer
+Summary(pl):	Interfejs tekstowy alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description interface-text
+Text interface for Alsaplayer.
+
+%description interface-text -l pl
+Interfejs tekstowy alsaplayera.
+
+%package interface-xosd
+Summary:	xosd interface for Alsaplayer
+Summary(pl):	Interfejs xosd alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description interface-xosd
+xosd interface for Alsaplayer.
+
+%description interface-xosd -l pl
+Interfejs xosd alsaplayera.
 
 %package lib
 Summary:	Library for remote control Alsaplayer
@@ -285,8 +350,21 @@ Library for remote control Alsaplayer - development files.
 %description devel
 Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
 
+%package static
+Summary:	Library for remote control Alsaplayer - development files
+Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe
+Group:		X11/Applications/Sound
+Requires:	%{name}-lib = %{version}
+
+%description static
+Library for remote control Alsaplayer - development files.
+
+%description static
+Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
+
 %prep
 %setup -q
+%patch0 -p1
 %patch1 -p1
 
 %build
@@ -302,12 +380,16 @@ export CPPFLAGS LDFLAGS
 	--enable-alsa \
 	--enable-audiofile \
 	--enable-esd \
+	--enable-flac \
 	--enable-gtk \
+	--enable-jack \
 	--enable-mikmod \
 	--enable-nas \
+	--enable-oggflac \
 	--enable-oggvorbis \
 	--enable-opengl \
 	--enable-oss \
+	--enable-static \
 %ifarch sparc
 	--enable-sparc
 %endif
@@ -330,36 +412,100 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/alsaplayer
 %dir %{_pkglibdir}
 %dir %{_pkglibdir}/input
+%dir %{_pkglibdir}/interface
+%dir %{_pkglibdir}/output
+%dir %{_pkglibdir}/reader
+%dir %{_pkglibdir}/scopes
 %attr(755,root,root) %{_pkglibdir}/input/libcdda.so
 %{_pkglibdir}/input/libcdda.la
 %attr(755,root,root) %{_pkglibdir}/input/libwav.so
 %{_pkglibdir}/input/libwav.la
-%dir %{_pkglibdir}/output
 %attr(755,root,root) %{_pkglibdir}/output/liboss_out.so
 %{_pkglibdir}/output/liboss_out.la
 %attr(755,root,root) %{_pkglibdir}/output/libnull_out.so
 %{_pkglibdir}/output/libnull_out.la
-%ifarch sparc
-%attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
-%{_pkglibdir}/output/libsparc_out.la
-%endif
-%dir %{_pkglibdir}/interface
-%attr(755,root,root) %{_pkglibdir}/interface/libtext.so
-%{_pkglibdir}/interface/libtext.la
-%attr(755,root,root) %{_pkglibdir}/interface/libdaemon.so
-%{_pkglibdir}/interface/libdaemon.la
-%dir %{_pkglibdir}/scopes
-%dir %{_pkglibdir}/reader
 %{_pkglibdir}/reader/libfile.la
 %attr(755,root,root) %{_pkglibdir}/reader/libfile.so
 %{_pkglibdir}/reader/libhttp.la
 %attr(755,root,root) %{_pkglibdir}/reader/libhttp.so
 %{_mandir}/man*/*
 
+%ifarch sparc
+%attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
+%{_pkglibdir}/output/libsparc_out.la
+%endif
+
+
+%files interface-daemon
+%defattr(644,root,root,755)
+
+%attr(755,root,root) %{_pkglibdir}/interface/libdaemon_interface.so
+%{_pkglibdir}/interface/libdaemon_interface.la
+
 %files interface-gtk
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/interface/libgtk.so
-%{_pkglibdir}/interface/libgtk.la
+%attr(755,root,root) %{_pkglibdir}/interface/libgtk_interface.so
+%{_pkglibdir}/interface/libgtk_interface.la
+
+%files interface-text
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/interface/libtext_interface.so
+%{_pkglibdir}/interface/libtext_interface.la
+
+%files interface-xosd
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/interface/libxosd_interface.so
+%{_pkglibdir}/interface/libxosd_interface.la
+
+%files input-audiofile
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libaf.so
+%{_pkglibdir}/input/libaf.la
+
+%files input-flac
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libflac_in.so
+%{_pkglibdir}/input/libflac_in.la
+
+%files input-mad
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
+%{_pkglibdir}/input/libmad_in.la
+
+%files input-mikmod
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libmod.so
+%{_pkglibdir}/input/libmod.la
+
+%files input-sndfile
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libsndfile_in.so
+%{_pkglibdir}/input/libsndfile_in.la
+
+%files input-vorbis
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/input/libvorbis_in.so
+%{_pkglibdir}/input/libvorbis_in.la
+
+%files output-alsa
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
+%{_pkglibdir}/output/libalsa_out.la
+
+%files output-esound
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
+%{_pkglibdir}/output/libesound_out.la
+
+%files output-jack
+%defattr(644,root,root,755)
+%{_pkglibdir}/output/libjack_out.la
+%attr(755,root,root) %{_pkglibdir}/output/libjack_out.so
+
+%files output-nas
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
+%{_pkglibdir}/output/libnas_out.la
 
 %files scopes-gtk
 %defattr(644,root,root,755)
@@ -381,46 +527,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/scopes/liboglspectrum.so
 %{_pkglibdir}/scopes/liboglspectrum.la
 
-%files input-mikmod
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/input/libmod.so
-%{_pkglibdir}/input/libmod.la
-
-%files input-vorbis
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/input/libvorbis_in.so
-%{_pkglibdir}/input/libvorbis_in.la
-
-%files input-audiofile
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/input/libaf.so
-%{_pkglibdir}/input/libaf.la
-
-%files input-mad
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
-%{_pkglibdir}/input/libmad_in.la
-
-%files output-alsa
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
-%{_pkglibdir}/output/libalsa_out.la
-
-%files output-esound
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
-%{_pkglibdir}/output/libesound_out.la
-
-%files output-nas
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
-%{_pkglibdir}/output/libnas_out.la
-
-#%files reader-curl
-#%defattr(644,root,root,755)
-#%%{_pkglibdir}/reader/libcurl.la
-#%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
-
 %files lib
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
@@ -431,3 +537,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libalsaplayer.la
 %{_libdir}/libalsaplayer.so
 %{_pkgconfigdir}/alsaplayer.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libalsaplayer.a
