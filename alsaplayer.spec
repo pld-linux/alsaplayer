@@ -2,13 +2,14 @@ Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.70
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-nas.patch
 Patch1:		%{name}-docs.patch
 Patch2:		%{name}-c++.patch
+Patch3:		%{name}-alsa.patch
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	esound-devel
@@ -199,9 +200,10 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
