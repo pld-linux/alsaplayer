@@ -6,8 +6,6 @@ Version:	0.99.53
 Release:	1
 License:	Opensource
 Group:		X11/Applications/Multimedia
-Group(de):	X11/Applikationen/Multimedia
-Group(pl):	X11/Aplikacje/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 Patch:		%{name}-c++.patch
 Requires:	gtk+
