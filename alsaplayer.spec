@@ -1,13 +1,14 @@
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.60
-Release:	2
+Version:	0.99.70
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-nas.patch
 Patch1:		%{name}-docs.patch
+Patch2:		%{name}-c++.patch
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	esound-devel
@@ -197,6 +198,7 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 libtoolize --copy --force
@@ -243,13 +245,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
 %{_pkglibdir}/input/libmad_in.la
 %dir %{_pkglibdir}/output
-%attr(755,root,root) %{_pkglibdir}/output/liboss.so
-%{_pkglibdir}/output/liboss.la
-%attr(755,root,root) %{_pkglibdir}/output/libnull.so
-%{_pkglibdir}/output/libnull.la
+%attr(755,root,root) %{_pkglibdir}/output/liboss_out.so
+%{_pkglibdir}/output/liboss_out.la
+%attr(755,root,root) %{_pkglibdir}/output/libnull_out.so
+%{_pkglibdir}/output/libnull_out.la
 %ifarch sparc
-%attr(755,root,root) %{_pkglibdir}/output/libsparc.so
-%{_pkglibdir}/output/libsparc.la
+%attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
+%{_pkglibdir}/output/libsparc_out.la
 %endif
 %attr(755,root,root) %{_pkglibdir}/interface/lib*.so
 %{_pkglibdir}/interface/lib*.la
@@ -274,15 +276,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files output-alsa
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libalsa.so
-%{_pkglibdir}/output/libalsa.la
+%attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
+%{_pkglibdir}/output/libalsa_out.la
 
 %files output-esound
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libesound.so
-%{_pkglibdir}/output/libesound.la
+%attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
+%{_pkglibdir}/output/libesound_out.la
 
 %files output-nas
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_pkglibdir}/output/libnas.so
-%{_pkglibdir}/output/libnas.la
+%attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
+%{_pkglibdir}/output/libnas_out.la
