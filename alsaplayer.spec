@@ -36,7 +36,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded
-and tries to excercise the ALSA library and driver quite a bit.
+and tries to exercise the ALSA library and driver quite a bit.
 Features include:
 
 Input addons:
