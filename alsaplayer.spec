@@ -6,13 +6,15 @@ Copyright:	Opensource
 Group:		Applications/Multimedia
 Source:		http://www.alsa-project.org/~andy/alsaplayer-%{version}.tar.gz
 Requires:	gtk+-devel
-BuildRequires:  alsa-devel
+BuildRequires:  alsa-lib-devel
 BuildRequires:  esound-devel
 BuildRequires:  audiofile-devel
 BuildRequires:  libmikmod-devel
 BuildRequires:	glib-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_pkglibdir	%{_libdir}/%{name}
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded and
@@ -83,24 +85,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/alsaplayer
-/usr/lib/alsaplayer/output/libalsa.a
-/usr/lib/alsaplayer/output/libalsa.la
-/usr/lib/alsaplayer/output/libalsa.so
-/usr/lib/alsaplayer/output/libesound.a
-/usr/lib/alsaplayer/output/libesound.la
-/usr/lib/alsaplayer/output/libesound.so
-/usr/lib/alsaplayer/output/liboss.a
-/usr/lib/alsaplayer/output/liboss.la
-/usr/lib/alsaplayer/output/liboss.so
-/usr/lib/alsaplayer/input/libwav.a
-/usr/lib/alsaplayer/input/libwav.la
-/usr/lib/alsaplayer/input/libwav.so
-/usr/lib/alsaplayer/input/libmod.a
-/usr/lib/alsaplayer/input/libmod.la
-/usr/lib/alsaplayer/input/libmod.so
-/usr/lib/alsaplayer/input/libcdda.a
-/usr/lib/alsaplayer/input/libcdda.la
-/usr/lib/alsaplayer/input/libcdda.so
-/usr/lib/alsaplayer/input/libmpg123.a
-/usr/lib/alsaplayer/input/libmpg123.la
-/usr/lib/alsaplayer/input/libmpg123.so
+%{_pkglibdir}/
