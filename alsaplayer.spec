@@ -309,7 +309,7 @@ audio system).
 
 %package output-jack
 Summary:	Alsaplayer plugin for playing sound through JACK
-Summary(pl):	Wtyczka alsaplayera do odtwarzania d¼wiêku przez JACK
+Summary(pl):	Wtyczka alsaplayera do odtwarzania d¼wiêku przez JACK-a
 Group:		Applications/Sound
 Provides:	alsaplayer_output
 Requires:	%{name} = %{version}
