@@ -1,16 +1,14 @@
 
-%define fullver 0.99.52-cvs20011126-jack
-
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.52
-Release:	3
+Version:	0.99.53
+Release:	1
 License:	Opensource
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
-Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{fullver}.tar.bz2
+Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 Patch:		%{name}-c++.patch
 Requires:	gtk+
 BuildRequires:	alsa-lib-devel
@@ -117,7 +115,7 @@ Ogólne cechy:
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
 %prep
-%setup -q -n %{name}-%{fullver}
+%setup -q
 %patch0 -p1
 
 %build
