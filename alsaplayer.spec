@@ -52,92 +52,92 @@ and tries to exercise the ALSA library and driver quite a bit.
 Features include:
 
 Input addons:
- - MP2 and MP3 support
- - Ogg Vorbis support (subpackage)
- - WAV support, 8-, 16-bit, mono, stereo, any sample rate
- - CDDA support, CD Digital Audio playback! and thus USB ready :)
- - Also plays files mapped by audiofs (CDDA)
- - MAD MPEG audio
- - Module support (mikmod) (subpcakage)
- - FLAC support
+- MP2 and MP3 support
+- Ogg Vorbis support (subpackage)
+- WAV support, 8-, 16-bit, mono, stereo, any sample rate
+- CDDA support, CD Digital Audio playback! and thus USB ready :)
+- Also plays files mapped by audiofs (CDDA)
+- MAD MPEG audio
+- Module support (mikmod) (subpcakage)
+- FLAC support
 
 Output addons:
- - ALSA. Best supported of course :) (subpackage)
- - OSS. Kernel native sound drivers
- - Sparc. UltraSparc sound drivers
- - SGI. SGI audio library driver
- - ESD. Enlightened sound daemon support (subpackage)
- - NAS. Network Audio System (subpakcage)
- - low latency JACK output
- - null :-)
+- ALSA. Best supported of course :) (subpackage)
+- OSS. Kernel native sound drivers
+- Sparc. UltraSparc sound drivers
+- SGI. SGI audio library driver
+- ESD. Enlightened sound daemon support (subpackage)
+- NAS. Network Audio System (subpakcage)
+- low latency JACK output
+- null :-)
 
 Visual scopes:
- - Stereoscope
- - Monoscope
- - Levelmeter
- - Spacescope
- - FFTscope
- - FFTscope II
- - Spectrum GL
+- Stereoscope
+- Monoscope
+- Levelmeter
+- Spacescope
+- FFTscope
+- FFTscope II
+- Spectrum GL
 
 General features:
- - Full speed (pitch) control, positive *and* negative! (First Linux
-   player that does this!! MP3's and CD's do varispeed :)
- - Queue (playlist) support
- - Concurrent visual scopes (open as many as you want)
- - Multi-threaded design for efficient/skip free playback (RT)
- - GUI Interface based on gtk+
- - NOGUI operation for shell script usage
- - On-screen-display based on xosd
- - Plug-in core architecture
- - Low latency mode, as low as 5ms when scheduled RT
- - Effects stream
- - Software based volume/pan control
- - Accurate scope/audio syncing using ALSA features
+- Full speed (pitch) control, positive *and* negative! (First Linux
+  player that does this!! MP3's and CD's do varispeed :)
+- Queue (playlist) support
+- Concurrent visual scopes (open as many as you want)
+- Multi-threaded design for efficient/skip free playback (RT)
+- GUI Interface based on gtk+
+- NOGUI operation for shell script usage
+- On-screen-display based on xosd
+- Plug-in core architecture
+- Low latency mode, as low as 5ms when scheduled RT
+- Effects stream
+- Software based volume/pan control
+- Accurate scope/audio syncing using ALSA features
 
 %description -l pl
 AlsaPlayer to nowy rodzaj odtwarzacza PCM. Jest wielow±tkowy i próbuje
 solidnie przeæwiczyæ sterowniki i bibliotekê ALSA. Jego cechy to:
 
 Wej¶cie:
- - obs³uga MP2 i MP3
- - obs³uga Ogg Vorbis (w podpakiecie)
- - obs³uga WAV, 8 i 16-bitowych, mono, stereo o dowolnej czêstotliwo¶ci
- - obs³uga CD Digital Audio
- - odtwarzanie plików podmapowanych przez audiofs (CDDA)
- - obs³uga MAD - MPEG Audio
- - obs³uga modu³ów (mikmod) (w podpakiecie)
- - obs³ug bezstratnej kompresji d¼wiêku FLAC
+- obs³uga MP2 i MP3
+- obs³uga Ogg Vorbis (w podpakiecie)
+- obs³uga WAV, 8 i 16-bitowych, mono, stereo o dowolnej czêstotliwo¶ci
+- obs³uga CD Digital Audio
+- odtwarzanie plików podmapowanych przez audiofs (CDDA)
+- obs³uga MAD - MPEG Audio
+- obs³uga modu³ów (mikmod) (w podpakiecie)
+- obs³ug bezstratnej kompresji d¼wiêku FLAC
 
 Wyj¶cie:
- - OSS - natywne sterowniki z j±dra
- - ALSA - oczywi¶cie najlepiej obs³ugiwana :) (w podpakiecie)
- - Sparc - sterowniki d¼wiêku dla UltraSparca
- - SGI - biblioteka sterowników d¼wiêku SGI
- - ESD - obs³uga O¶wieconego demona d¼wiêku (w podpakiecie)
- - NAS - Sieciowego Systemu Audio (w podpakiecie)
- - JACK - zestaw po³±czeñ d¼wiêku o ma³ych opó¼nieniach (w podpakiecie)
- - null :-)
+- OSS - natywne sterowniki z j±dra
+- ALSA - oczywi¶cie najlepiej obs³ugiwana :) (w podpakiecie)
+- Sparc - sterowniki d¼wiêku dla UltraSparca
+- SGI - biblioteka sterowników d¼wiêku SGI
+- ESD - obs³uga O¶wieconego demona d¼wiêku (w podpakiecie)
+- NAS - Sieciowego Systemu Audio (w podpakiecie)
+- JACK - zestaw po³±czeñ d¼wiêku o ma³ych opó¼nieniach (w podpakiecie)
+- null :-)
 
 Wizualizacja:
- - Stereoskop
- - Monoskop
- - Wska¼nik poziomu d¼wiêku
- - Wska¼niki oparte o analizê FFT
- - analizator spektrum sygna³u w oparciu o OpenGL
+- Stereoskop
+- Monoskop
+- Wska¼nik poziomu d¼wiêku
+- Wska¼niki oparte o analizê FFT
+- analizator spektrum sygna³u w oparciu o OpenGL
 
 Ogólne cechy:
- - Kontrola szybko¶ci (w obie strony)
- - obs³uga kolejki (playlisty)
- - obs³uga wielu wska¼ników naraz
- - wielow±tkowo¶æ
- - interfejs graficzny bazuj±cy na gtk+
- - operacje bez GUI na potrzeby skryptów
- - tryb Informacje-na-ekranie oparty o xosd
- - architektura wtyczek
- - tryb "czasu rzeczywistego" daj±cy opó¼nienia rzêdu 5ms
- - programowa kontrola g³o¶no¶ci i balansu
- - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
+- Kontrola szybko¶ci (w obie strony)
+- obs³uga kolejki (playlisty)
+- obs³uga wielu wska¼ników naraz
+- wielow±tkowo¶æ
+- interfejs graficzny bazuj±cy na gtk+
+- operacje bez GUI na potrzeby skryptów
+- tryb Informacje-na-ekranie oparty o xosd
+- architektura wtyczek
+- tryb "czasu rzeczywistego" daj±cy opó¼nienia rzêdu 5ms
+- programowa kontrola g³o¶no¶ci i balansu
+- synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
 %package daemon
 Summary:	Deamon interface for Alsaplayer
