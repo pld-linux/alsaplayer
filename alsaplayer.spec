@@ -17,9 +17,7 @@ BuildRequires:	gtk+-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	mad-devel
-%ifnarch ppc
 BuildRequires:	nas-devel
-%endif
 BuildRequires:	libtool
 BuildRequires:	automake
 BuildRequires:	autoconf
@@ -286,9 +284,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
 %{_pkglibdir}/output/libesound_out.la
 
-%ifnarch ppc
 %files output-nas
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
 %{_pkglibdir}/output/libnas_out.la
-%endif
