@@ -1,16 +1,16 @@
 # TODO:
 # - check descriptions
 # - add/check translations
-# - add .desktop file
-Summary:	Alsaplayer - MP2/MP3/WAV/CD player
-Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
+Summary:	Alsaplayer - CD/FLAC/MOD/MP3/OGG/WAV player
+Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/OGG/WAV
 Name:		alsaplayer
 Version:	0.99.75
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 # Source0-md5:	353b57058e05aa5f0c01f93fc049c650
+Source1:	%{name}.desktop
 Patch0:		%{name}-docs.patch
 Patch1:		%{name}-gcc33.patch
 URL:		http://www.alsaplayer.org/
@@ -131,6 +131,18 @@ Ogólne cechy:
  - programowa kontrola g³o¶no¶ci i balansu
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
+%package daemon
+Summary:	Deamon interface for Alsaplayer
+Summary(pl):	Interfejs demona alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description daemon
+Deamon interface for Alsaplayer.
+
+%description daemon -l pl
+Interfejs demona alsaplayera.
+
 %package input-audiofile
 Summary:	Alsaplayer plugin for playing wave audio formats
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików audio typu wave
@@ -157,17 +169,6 @@ Alsaplayer plugin for playing FLAC files.
 %description input-flac -l pl
 Wtyczka do alsaplayera do odtwarzania plików FLAC.
 
-%package output-jack
-Summary:        Alsaplayer plugin for playing sound through JACK
-Summary(pl):    Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
-Group:          X11/Applications/Sound
-Requires:       %{name} = %{version}
-
-%description output-jack
-Alsaplayer plugin for sound through JACK
-
-%description output-jack -l pl
-Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
 
 %package input-mad
 Summary:	Alsaplayer plugin for playing MP3 files using MAD
@@ -219,82 +220,6 @@ Alsaplayer plugin for playing ogg/vorbis files.
 %description input-vorbis -l pl
 Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
 
-
-%package output-alsa
-Summary:	Alsaplayer plugin for playing through alsa drivers
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez sterowniki alsa
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description output-alsa
-Alsaplayer plugin for playing sound through alsa drivers.
-
-%description output-alsa -l pl
-Wtyczka do alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
-
-%package output-esound
-Summary:	Alsaplayer plugin for playing through esound daemon
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona esound
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description output-esound
-Alsaplayer plugin for playing sound through esound daemon.
-
-%description output-esound -l pl
-Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona esound.
-
-%package output-nas
-Summary:	Alsaplayer plugin for playing through NAS daemon
-Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description output-nas
-Alsaplayer plugin for playing sound through NAS (network audio system)
-daemon.
-
-%description output-nas -l pl
-Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
-(network audio system).
-
-%package scopes-gtk
-Summary:	Alsaplayer plugin for visualization
-Summary(pl):	Wtyczka do alsaplayera do wizualizacji
-Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{version}
-
-%description scopes-gtk
-Alsaplayer plugin for visualization.
-
-%description scopes-gtk -l pl
-Wtyczka do alsaplayera do wizualizacji.
-
-%package scopes-opengl
-Summary:	Alsaplayer plugin for visualization using OpenGL
-Summary(pl):	Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL
-Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{version}
-Requires:	OpenGL
-
-%description scopes-opengl
-Alsaplayer plugin for visualization using OpenGL.
-
-%description scopes-opengl -l pl
-Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
-
-%package interface-daemon
-Summary:	Deamon interface for Alsaplayer
-Summary(pl):	Interfejs demona alsaplayera
-Group:		X11/Applications/Sound
-Requires:	%{name} = %{version}
-
-%description daemon
-Deamon interface for Alsaplayer.
-
-%description daemon -l pl
-Interfejs demona alsaplayera.
-
 %package interface-gtk
 Summary:	GTK+ interface for Alsaplayer
 Summary(pl):	Interfejs GTK+ alsaplayera
@@ -330,6 +255,81 @@ xosd interface for Alsaplayer.
 
 %description interface-xosd -l pl
 Interfejs xosd alsaplayera.
+
+%package output-alsa
+Summary:	Alsaplayer plugin for playing through alsa drivers
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez sterowniki alsa
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description output-alsa
+Alsaplayer plugin for playing sound through alsa drivers.
+
+%description output-alsa -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
+
+%package output-esound
+Summary:	Alsaplayer plugin for playing through esound daemon
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona esound
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%description output-esound
+Alsaplayer plugin for playing sound through esound daemon.
+
+%description output-esound -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona esound.
+
+%package output-nas
+Summary:	Alsaplayer plugin for playing through NAS daemon
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}
+
+%package output-jack
+Summary:        Alsaplayer plugin for playing sound through JACK
+Summary(pl):    Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
+Group:          X11/Applications/Sound
+Requires:       %{name} = %{version}
+
+%description output-jack
+Alsaplayer plugin for sound through JACK
+
+%description output-jack -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez JACK
+
+%description output-nas
+Alsaplayer plugin for playing sound through NAS (network audio system)
+daemon.
+
+%description output-nas -l pl
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
+(network audio system).
+
+%package scopes-gtk
+Summary:	Alsaplayer plugin for visualization
+Summary(pl):	Wtyczka do alsaplayera do wizualizacji
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description scopes-gtk
+Alsaplayer plugin for visualization.
+
+%description scopes-gtk -l pl
+Wtyczka do alsaplayera do wizualizacji.
+
+%package scopes-opengl
+Summary:	Alsaplayer plugin for visualization using OpenGL
+Summary(pl):	Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+Requires:	OpenGL
+
+%description scopes-opengl
+Alsaplayer plugin for visualization using OpenGL.
+
+%description scopes-opengl -l pl
+Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
 
 %package devel
 Summary:	Alsaplayer header files
@@ -391,10 +391,13 @@ export CPPFLAGS LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
+
+install -c %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
@@ -426,6 +429,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/reader/libfile.so
 %attr(755,root,root) %{_pkglibdir}/reader/libhttp.so
 %{_mandir}/man*/*
+%{_desktopdir}/%{name}.desktop
 
 %ifarch sparc
 %attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
