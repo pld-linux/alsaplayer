@@ -1,6 +1,6 @@
 Summary:	Alsaplayer
 Name:		alsaplayer
-Version:	0.99.30
+Version:	0.99.31
 Release:	1
 Copyright:	Opensource
 Group:		Applications/Multimedia
