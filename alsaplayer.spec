@@ -11,25 +11,25 @@ Source1:	%{name}.desktop
 Patch0:		%{name}-docs.patch
 Patch1:		%{name}-gcc33.patch
 URL:		http://www.alsaplayer.org/
-BuildRequires:  OpenGL-devel
-BuildRequires:  alsa-lib-devel
-BuildRequires:  audiofile-devel
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  esound-devel
-BuildRequires:  flac-devel
-BuildRequires:  gtk+-devel
+BuildRequires:	OpenGL-devel
+BuildRequires:	alsa-lib-devel
+BuildRequires:	audiofile-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	esound-devel
+BuildRequires:	flac-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	id3lib-devel
-BuildRequires:  jack-audio-connection-kit-devel >= 0.69.1
-BuildRequires:  libmikmod-devel
-BuildRequires:  libsndfile-devel
+BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1
+BuildRequires:	libmikmod-devel
+BuildRequires:	libsndfile-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:  libtool
-BuildRequires:  libvorbis-devel
-BuildRequires:  mad-devel
-BuildRequires:  nas-devel
-BuildRequires:  xosd-devel
-Requires(post): /sbin/ldconfig
+BuildRequires:	libtool
+BuildRequires:	libvorbis-devel
+BuildRequires:	mad-devel
+BuildRequires:	nas-devel
+BuildRequires:	xosd-devel
+Requires(post):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -155,10 +155,10 @@ Wtyczka alsaplayera do odtwarzania plików audio typu wave (AIFF,
 AIFC, WAVE, ...) przy u¿yciu biblioteki audiofile.
 
 %package input-flac
-Summary:        Alsaplayer plugin for playing FLAC files
-Summary(pl):    Wtyczka alsaplayera do odtwarzania plików FLAC
-Group:          Applications/Sound
-Requires:       %{name} = %{version}
+Summary:	Alsaplayer plugin for playing FLAC files
+Summary(pl):	Wtyczka alsaplayera do odtwarzania plików FLAC
+Group:		Applications/Sound
+Requires:	%{name} = %{version}
 
 %description input-flac
 Alsaplayer plugin for playing FLAC files.
