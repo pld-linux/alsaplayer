@@ -33,8 +33,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 %define		_pkglibdir	%{_libdir}/%{name}
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded
