@@ -1,12 +1,12 @@
-Summary: Alsaplayer
-Name: alsaplayer
-Version: 0.99
-Release: 21
-Copyright: Opensource
-Group: Applications/Multimedia
-Source: http://www.alsa-project.org/~andy/alsaplayer-%{version}.%{release}.tar.gz
-Requires:  glib-1.2.1 gtk+-1.2.1
-BuildRoot: /var/tmp/%{name}-%{version}-%{release}.root
+Summary:	Alsaplayer
+Name:		alsaplayer
+Version:	0.99.21
+Release:	1
+Copyright:	Opensource
+Group:		Applications/Multimedia
+Source:		http://www.alsa-project.org/~andy/alsaplayer-%{version}.%{release}.tar.gz
+Requires: 	glib-1.2.1 gtk+-1.2.1
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded and
@@ -57,7 +57,6 @@ General features:
      Open source(tm) 
      Y2K complient (doh!)
 
-RPM built by Miles Lott<milos@insync.net> 7/1/1999
 %prep
 
 %setup -n alsaplayer-%{version}.%{release}
