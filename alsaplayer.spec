@@ -7,7 +7,7 @@ Release:	1
 License:	Opensource
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
-Patch:		%{name}-c++.patch
+Patch0:		%{name}-c++.patch
 Requires:	gtk+
 BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
@@ -92,7 +92,7 @@ Wyj¶cie:
  - Sparc - sterowniki d¼wiêku dla UltraSparca
  - SGI - biblioteka sterowników d¼wiêku SGI
  - ESD - obs³uga O¶wieconego demona d¼wiêku
- - NAS - Sieciowego Systemu Audio 
+ - NAS - Sieciowego Systemu Audio
  - null :-)
 
 Wizualizacja:
@@ -127,7 +127,7 @@ autoconf
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-gzip -9nf AUTHORS README 
+gzip -9nf AUTHORS README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
