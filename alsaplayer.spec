@@ -1,18 +1,22 @@
+
+%define fullver 0.99.52-cvs20011126-jack
+
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.31
+Version:	0.99.52
 Release:	2
 License:	Opensource
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
-Source0:	http://www.alsa-project.org/~andy/%{name}-%{version}.tar.gz
+Source0:	http://www.alsa-project.org/~andy/%{name}-%{fullver}.tar.bz2
 Requires:	gtk+-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	libmikmod-devel
+BuildRequires:	libvorbis-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libtool
 BuildRequires:	automake
@@ -31,10 +35,12 @@ Features include:
 
 Input addons:
  - MP2 and MP3 support
+ - Ogg Vorbis support
  - WAV support, 8-, 16-bit, mono, stereo, any sample rate
  - CDDA support, CD Digital Audio playback! and thus USB ready :)
  - Also plays files mapped by audiofs (CDDA)
- - Module support in progress...
+ - MAD MPEG audio
+ - Module support (mikmod)
 
 Output addons:
  - ALSA. Best supported of course :)
@@ -42,6 +48,8 @@ Output addons:
  - Sparc. UltraSparc sound drivers
  - SGI. SGI audio library driver
  - ESD. Enlightened sound daemon support
+ - NAS. Network Audio System
+ - null :-)
 
 Visual scopes:
  - Stereoscope
@@ -74,10 +82,12 @@ solidnie przeæwiczyæ sterowniki i bibliotekê ALSA. Jego cechy to:
 
 Wej¶cie:
  - obs³uga MP2 i MP3
+ - obs³uga Ogg Vorbis
  - obs³uga WAV, 8 i 16-bitowych, mono, stereo, dowolna czêstotliwo¶æ
  - obs³uga CD Digital Audio
  - odtwarzanie plików podmapowanych przez audiofs (CDDA)
- - wkrótce obs³uga modu³ów...
+ - obs³uga MAD - MPEG Audio
+ - obs³uga modu³ów (mikmod)
 
 Wyj¶cie:
  - ALSA - oczywi¶cie najlepiej obs³ugiwana :)
@@ -85,6 +95,8 @@ Wyj¶cie:
  - Sparc - sterowniki d¼wiêku dla UltraSparca
  - SGI - biblioteka sterowników d¼wiêku SGI
  - ESD - obs³uga O¶wieconego demona d¼wiêku
+ - NAS - Sieciowego Systemu Audio 
+ - null :-)
 
 Wizualizacja:
  - Stereoskop
@@ -104,7 +116,7 @@ Ogólne cechy:
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{fullver}
 
 %build
 libtoolize --copy --force
