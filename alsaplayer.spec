@@ -19,14 +19,14 @@ BuildRequires:	automake
 BuildRequires:	esound-devel
 BuildRequires:	flac-devel
 BuildRequires:	gtk+-devel
-BuildRequires:	id3lib-devel
 BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1
+#BuildRequires:	libid3tag-devel	- checked for but not used (yet?)
+BuildRequires:	libmad-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	libsndfile-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
-BuildRequires:	mad-devel
 BuildRequires:	nas-devel
 BuildRequires:	xosd-devel
 Requires(post):	/sbin/ldconfig
