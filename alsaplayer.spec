@@ -417,7 +417,7 @@ rm -rf $RPM_BUILD_ROOT
 
 #%files reader-curl
 #%defattr(644,root,root,755)
-#%{_pkglibdir}/reader/libcurl.la
+#%%{_pkglibdir}/reader/libcurl.la
 #%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
 
 %files lib
