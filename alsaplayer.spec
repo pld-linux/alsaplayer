@@ -1,5 +1,5 @@
 # TODO:
-# - check description
+# - check descriptions
 # - add/check translations
 # - add .desktop file
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
@@ -115,7 +115,7 @@ Wizualizacja:
  - Stereoskop
  - Monoskop
  - Wska¼nik poziomu d¼wiêku
- - Wska¼niki oparte o analize FFT
+ - Wska¼niki oparte o analizê FFT
  - analizator spektrum sygna³u w oparciu o OpenGL
 
 Ogólne cechy:
