@@ -5,9 +5,13 @@ Release:	1
 Copyright:	Opensource
 Group:		Applications/Multimedia
 Source:		http://www.alsa-project.org/~andy/alsaplayer-%{version}.tar.gz
-Requires: 	glib-1.2.1 gtk+-1.2.1
+Requires:	gtk+-devel
 BuildRequires:  alsa-devel
 BuildRequires:  esound-devel
+BuildRequires:  audiofile-devel
+BuildRequires:  libmikmod-devel
+BuildRequires:	glib-devel
+BuildRequires:	gtk+-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -70,7 +74,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 
-gzip -9nf AUTHORS README README.ESD README.OSS
+gzip -9nf AUTHORS README 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,9 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/alsaplayer/output/liboss.a
 /usr/lib/alsaplayer/output/liboss.la
 /usr/lib/alsaplayer/output/liboss.so
-/usr/lib/alsaplayer/input/libaplay.a
-/usr/lib/alsaplayer/input/libaplay.la
-/usr/lib/alsaplayer/input/libaplay.so
+/usr/lib/alsaplayer/input/libwav.a
+/usr/lib/alsaplayer/input/libwav.la
+/usr/lib/alsaplayer/input/libwav.so
+/usr/lib/alsaplayer/input/libmod.a
+/usr/lib/alsaplayer/input/libmod.la
+/usr/lib/alsaplayer/input/libmod.so
 /usr/lib/alsaplayer/input/libcdda.a
 /usr/lib/alsaplayer/input/libcdda.la
 /usr/lib/alsaplayer/input/libcdda.so
