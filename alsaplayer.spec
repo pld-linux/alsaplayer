@@ -9,8 +9,8 @@
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.71
-Release:	2
+Version:	0.99.72
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -20,7 +20,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	curl-devel
+#BuildRequires:	curl-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libmikmod-devel
@@ -216,17 +216,17 @@ system) daemon.
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 (network audio system).
 
-%package reader-curl
-Summary:	Alsaplayer plugin for reading files from network
-Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
-Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{version}
-
-%description reader-curl
-Alsaplayer plugin for reading files from network.
-
-%description reader-curl -l pl 
-Wtyczka do alsaplayera do odczytu plików z sieci.
+#%package reader-curl
+#Summary:	Alsaplayer plugin for reading files from network
+#Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
+#Group:		X11/Applications/Multimedia
+#Requires:	%{name} = %{version}
+#
+#%description reader-curl
+#Alsaplayer plugin for reading files from network.
+#
+#%description reader-curl -l pl 
+#Wtyczka do alsaplayera do odczytu plików z sieci.
 
 %package scopes-gtk
 Summary:	Alsaplayer plugin for visualization
@@ -397,10 +397,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
 %{_pkglibdir}/output/libnas_out.la
 
-%files reader-curl
-%defattr(644,root,root,755)
-%{_pkglibdir}/reader/libcurl.la
-%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
+#%files reader-curl
+#%defattr(644,root,root,755)
+#%{_pkglibdir}/reader/libcurl.la
+#%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
 
 %files lib
 %attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
