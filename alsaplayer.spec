@@ -9,18 +9,16 @@
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
-Version:	0.99.72
+Version:	0.99.74
 Release:	1
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-nas.patch
 Patch1:		%{name}-docs.patch
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-#BuildRequires:	curl-devel
 BuildRequires:	esound-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libmikmod-devel
@@ -288,7 +286,6 @@ Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 
 %build
