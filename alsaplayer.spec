@@ -245,7 +245,7 @@ Requires:	%{name} = %{version}
 Alsaplayer plugin for visualization using OpenGL.
 
 %package interface-gtk
-Summary:	GTK+ interface for Alsaplayer.
+Summary:	GTK+ interface for Alsaplayer
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
@@ -253,7 +253,7 @@ Requires:	%{name} = %{version}
 GTK+ interface for Alsaplayer.
 
 %package lib
-Summary:	Library for remote control Alsaplayer.
+Summary:	Library for remote control Alsaplayer
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
 
