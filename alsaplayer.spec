@@ -1,8 +1,16 @@
+# TODO:
+# - fix description 
+# ** mpg123 plugin are removed, so alsaplayer play mp3 only via mad plugin
+# ** add info about new subpackages (scopes, interface-gtk and others)
+# - add output-jack plugin (requires jackit.sf.net)
+# - add input-flac plugin (requires flac.sf.net)
+# - think about static libalsaplayer.a (add --enable-static to %%configure and make subpackage)
+# - add/check translations
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.71
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -20,6 +28,11 @@ BuildRequires:	libtool
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreqdep	libGL.so.1 libGLU.so.1
+%define		_pkglibdir	%{_libdir}/%{name}
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded
@@ -146,6 +159,18 @@ WAVE, ...).
 Wtyczka do alsaplayera do odtwarzania plików audio typa wave (AIFF,
 AIFC, WAVE, ...)
 
+%package input-mad
+Summary:	Alsaplayer plugin for playing MP3 files using MAD 
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description input-mad
+Alsaplayer plugin for playing MP3 files using MAD.
+
+%description input-mad -l pl 
+Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
+
 %package output-alsa
 # this plugin come in two versions, for alsa 0.5.x and 0.9.x
 # but this libraraies provide different .so number, so the
@@ -189,9 +214,57 @@ system) daemon.
 Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 (network audio system).
 
-%define		_pkglibdir	%{_libdir}/%{name}
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
+%package reader-curl
+Summary:	Alsaplayer plugin for reading files from network
+Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description reader-curl
+Alsaplayer plugin for reading files from network.
+
+%description reader-curl -l pl 
+Wtyczka do alsaplayera do odczytu plików z sieci.
+
+%package scopes-gtk
+Summary:	Alsaplayer plugin for visualization
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description scopes-gtk
+Alsaplayer plugin for visualization.
+
+%package scopes-opengl
+Summary:	Alsaplayer plugin for visualization using OpenGL
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description scopes-opengl
+Alsaplayer plugin for visualization using OpenGL.
+
+%package interface-gtk
+Summary:	GTK+ interface for Alsaplayer.
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description interface-gtk
+GTK+ interface for Alsaplayer.
+
+%package lib
+Summary:	Library for remote control Alsaplayer.
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description lib
+Library for remote control Alsaplayer.
+
+%package devel
+Summary:	Library for remote control Alsaplayer - development files
+Group:		X11/Applications/Multimedia
+Requires:	%{name}-lib = %{version}
+
+%description devel
+Library for remote control Alsaplayer - development files
 
 %prep
 %setup -q
@@ -204,6 +277,9 @@ rm -f missing
 aclocal
 %{__autoconf}
 %{__automake}
+CPPFLAGS=" -I/usr/X11R6/include"
+LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib"
+export CPPFLAGS LDFLAGS
 %configure \
 	--enable-alsa \
 	--enable-audiofile \
@@ -224,7 +300,8 @@ aclocal
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgconfigdir=%{_pkgconfigdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -239,8 +316,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkglibdir}/input/libcdda.la
 %attr(755,root,root) %{_pkglibdir}/input/libwav.so
 %{_pkglibdir}/input/libwav.la
-%attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
-%{_pkglibdir}/input/libmad_in.la
 %dir %{_pkglibdir}/output
 %attr(755,root,root) %{_pkglibdir}/output/liboss_out.so
 %{_pkglibdir}/output/liboss_out.la
@@ -250,11 +325,41 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
 %{_pkglibdir}/output/libsparc_out.la
 %endif
-%attr(755,root,root) %{_pkglibdir}/interface/lib*.so
-%{_pkglibdir}/interface/lib*.la
-%attr(755,root,root) %{_pkglibdir}/scopes/lib*.so
-%{_pkglibdir}/scopes/lib*.la
+%dir %{_pkglibdir}/interface
+%attr(755,root,root) %{_pkglibdir}/interface/libtext.so
+%{_pkglibdir}/interface/libtext.la
+%attr(755,root,root) %{_pkglibdir}/interface/libdaemon.so
+%{_pkglibdir}/interface/libdaemon.la
+%dir %{_pkglibdir}/scopes
+%dir %{_pkglibdir}/reader
+%{_pkglibdir}/reader/libfile.la
+%attr(755,root,root) %{_pkglibdir}/reader/libfile.so
+%{_pkglibdir}/reader/libhttp.la
+%attr(755,root,root) %{_pkglibdir}/reader/libhttp.so
 %{_mandir}/man*/*
+
+%files interface-gtk
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/interface/libgtk.so
+%{_pkglibdir}/interface/libgtk.la
+
+%files scopes-gtk
+%attr(755,root,root) %{_pkglibdir}/scopes/libblurscope.so
+%{_pkglibdir}/scopes/libblurscope.la
+%attr(755,root,root) %{_pkglibdir}/scopes/liblevelmeter.so
+%{_pkglibdir}/scopes/liblevelmeter.la
+%attr(755,root,root) %{_pkglibdir}/scopes/liblogbarfft.so
+%{_pkglibdir}/scopes/liblogbarfft.la
+%attr(755,root,root) %{_pkglibdir}/scopes/libmonoscope.so
+%{_pkglibdir}/scopes/libmonoscope.la
+%attr(755,root,root) %{_pkglibdir}/scopes/libspacescope.so
+%{_pkglibdir}/scopes/libspacescope.la
+%attr(755,root,root) %{_pkglibdir}/scopes/libsynaescope.so
+%{_pkglibdir}/scopes/libsynaescope.la
+
+%files scopes-opengl
+%attr(755,root,root) %{_pkglibdir}/scopes/liboglspectrum.so
+%{_pkglibdir}/scopes/liboglspectrum.la
 
 %files input-mikmod
 %defattr(644,root,root,755)
@@ -271,6 +376,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/input/libaf.so
 %{_pkglibdir}/input/libaf.la
 
+%files input-mad
+%attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
+%{_pkglibdir}/input/libmad_in.la
+
 %files output-alsa
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
@@ -285,3 +394,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
 %{_pkglibdir}/output/libnas_out.la
+
+%files reader-curl
+%defattr(644,root,root,755)
+%{_pkglibdir}/reader/libcurl.la
+%attr(755,root,root) %{_pkglibdir}/reader/libcurl.so
+
+%files lib
+%attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
+
+%files devel
+%{_includedir}/alsaplayer
+%{_libdir}/libalsaplayer.la
+%{_libdir}/libalsaplayer.so
+%{_pkgconfigdir}/alsaplayer.pc
