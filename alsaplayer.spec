@@ -276,7 +276,7 @@ Library for remote control Alsaplayer - development files
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 CPPFLAGS=" -I/usr/X11R6/include"
