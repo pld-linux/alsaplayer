@@ -12,7 +12,7 @@ Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{fullver}.tar.bz2
 Patch:		%{name}-c++.patch
-Requires:	gtk+-devel
+Requires:	gtk+
 BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
