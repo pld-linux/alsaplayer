@@ -6,8 +6,8 @@
 %bcond_without mikmod		# build without mikmod plugin
 %bcond_without nas		# build without nas plugin
 #
-Summary:	Alsaplayer - CD/FLAC/MOD/MP3/OGG/WAV player
-Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/OGG/WAV
+Summary:	Alsaplayer - CD/FLAC/MOD/MP3/Ogg/WAV player
+Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
 Name:		alsaplayer
 Version:	0.99.76
 Release:	3
@@ -216,16 +216,16 @@ Wtyczka do alsaplayera do odtwarzania plików audio typu WAVE (AIFF,
 AIFC, WAVE, ...) przy u¿yciu biblioteki libsndfile.
 
 %package input-vorbis
-Summary:	Alsaplayer plugin for playing ogg/vorbis files
-Summary(pl):	Wtyczka alsaplayera do odtwarzania plików ogg/vorbis
+Summary:	Alsaplayer plugin for playing Ogg/Vorbis files
+Summary(pl):	Wtyczka alsaplayera do odtwarzania plików Ogg/Vorbis
 Group:		Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-vorbis
-Alsaplayer plugin for playing ogg/vorbis files.
+Alsaplayer plugin for playing Ogg/Vorbis files.
 
 %description input-vorbis -l pl
-Wtyczka alsaplayera do odtwarzania plików ogg/vorbis.
+Wtyczka alsaplayera do odtwarzania plików Ogg/Vorbis.
 
 %package interface-gtk
 Summary:	GTK+ interface for Alsaplayer
