@@ -3,14 +3,13 @@
 # - add info about new subpackages (scopes, interface-gtk and others)
 # - are static libs really need?
 # - add/check translations
-# - fix descritions in static package (new)
 # - add .desktop file (maybe icon too?)
 # - interface-daemon - maybe other name will be better
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.75
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -26,15 +25,17 @@ BuildRequires:  automake
 BuildRequires:  esound-devel
 BuildRequires:  flac-devel
 BuildRequires:  gtk+-devel
+BuildRequires:	id3lib-devel
 BuildRequires:  jack-audio-connection-kit-devel >= 0.69.1
 BuildRequires:  libmikmod-devel
 BuildRequires:  libsndfile-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:  libtool
 BuildRequires:  libvorbis-devel
 BuildRequires:  mad-devel
 BuildRequires:  nas-devel
 BuildRequires:  xosd-devel
-Requires:	%{name}-lib-%{version}
+Requires(post): /sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -53,7 +54,8 @@ Input addons:
  - Also plays files mapped by audiofs (CDDA)
  - MAD MPEG audio
  - Module support (mikmod) (subpcakage)
-
+ - FLAC support
+ 
 Output addons:
  - ALSA. Best supported of course :) (subpackage)
  - OSS. Kernel native sound drivers
@@ -61,6 +63,7 @@ Output addons:
  - SGI. SGI audio library driver
  - ESD. Enlightened sound daemon support (subpackage)
  - NAS. Network Audio System (subpakcage)
+ - low latency JACK output
  - null :-)
 
 Visual scopes:
@@ -80,13 +83,13 @@ General features:
  - Multi-threaded design for efficient/skip free playback (RT)
  - GUI Interface based on gtk+
  - NOGUI operation for shell script usage
+ - On-screen-display based on xosd
  - Plug-in core architecture
  - Low latency mode, as low as 5ms when scheduled RT
  - Effects stream
  - Software based volume/pan control
  - Accurate scope/audio syncing using ALSA features
  - Portable (well, we'll see about that :)
- - Open source(tm)
 
 %description -l pl
 AlsaPlayer to nowy rodzaj odtwarzacza PCM. Jest wielow±tkowy i próbuje
@@ -100,6 +103,7 @@ Wej¶cie:
  - odtwarzanie plików podmapowanych przez audiofs (CDDA)
  - obs³uga MAD - MPEG Audio
  - obs³uga modu³ów (mikmod) (w podpakiecie)
+ - obs³ug bezstratnej kompresji d¼wiêku FLAC
 
 Wyj¶cie:
  - OSS - natywne sterowniki z j±dra
@@ -108,6 +112,7 @@ Wyj¶cie:
  - SGI - biblioteka sterowników d¼wiêku SGI
  - ESD - obs³uga O¶wieconego demona d¼wiêku (w podpakiecie)
  - NAS - Sieciowego Systemu Audio (w podpakiecie)
+ - wyj¶cie JACK
  - null :-)
 
 Wizualizacja:
@@ -271,6 +276,7 @@ Summary:	Alsaplayer plugin for visualization using OpenGL
 Summary(pl):	Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
+Requires:	OpenGL
 
 %description scopes-opengl
 Alsaplayer plugin for visualization using OpenGL.
@@ -326,41 +332,29 @@ xosd interface for Alsaplayer.
 %description interface-xosd -l pl
 Interfejs xosd alsaplayera.
 
-%package lib
-Summary:	Library for remote control Alsaplayer
-Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem
+%package devel
+Summary:	Alsaplayer header files
+Summary(pl):	Pliki nag³ówkowe Alsaplayera
 Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
-%description lib
-Library for remote control Alsaplayer.
-
-%description lib -l pl
-Biblioteka do zdalnego sterowania alsaplayerem.
-
-%package devel
-Summary:	Library for remote control Alsaplayer - development files
-Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe
-Group:		X11/Applications/Sound
-Requires:	%{name}-lib = %{version}
+%description devel
+Alsaplayer header files.
 
 %description devel
-Library for remote control Alsaplayer - development files.
-
-%description devel
-Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
+Alsaplayer - pliki nag³ówkowe.
 
 %package static
-Summary:	Library for remote control Alsaplayer - development files
-Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe
+Summary:	Alsaplayer static library
+Summary(pl):	Biblioteka statyczna Alsaplayera
 Group:		X11/Applications/Sound
-Requires:	%{name}-lib = %{version}
+Requires:	%{name} = %{version}
 
 %description static
-Library for remote control Alsaplayer - development files.
+Alsaplayer static library.
 
 %description static
-Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe.
+Biblioteka statyczna Alsaplayera.
 
 %prep
 %setup -q
@@ -403,13 +397,23 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/output/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/reader/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/scopes/*.{a,la}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README ChangeLog
 %attr(755,root,root) %{_bindir}/alsaplayer
+%attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
 %dir %{_pkglibdir}
 %dir %{_pkglibdir}/input
 %dir %{_pkglibdir}/interface
@@ -417,119 +421,85 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pkglibdir}/reader
 %dir %{_pkglibdir}/scopes
 %attr(755,root,root) %{_pkglibdir}/input/libcdda.so
-%{_pkglibdir}/input/libcdda.la
 %attr(755,root,root) %{_pkglibdir}/input/libwav.so
-%{_pkglibdir}/input/libwav.la
 %attr(755,root,root) %{_pkglibdir}/output/liboss_out.so
-%{_pkglibdir}/output/liboss_out.la
 %attr(755,root,root) %{_pkglibdir}/output/libnull_out.so
-%{_pkglibdir}/output/libnull_out.la
-%{_pkglibdir}/reader/libfile.la
 %attr(755,root,root) %{_pkglibdir}/reader/libfile.so
-%{_pkglibdir}/reader/libhttp.la
 %attr(755,root,root) %{_pkglibdir}/reader/libhttp.so
 %{_mandir}/man*/*
 
 %ifarch sparc
 %attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
-%{_pkglibdir}/output/libsparc_out.la
 %endif
-
 
 %files interface-daemon
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_pkglibdir}/interface/libdaemon_interface.so
-%{_pkglibdir}/interface/libdaemon_interface.la
 
 %files interface-gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libgtk_interface.so
-%{_pkglibdir}/interface/libgtk_interface.la
 
 %files interface-text
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libtext_interface.so
-%{_pkglibdir}/interface/libtext_interface.la
 
 %files interface-xosd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libxosd_interface.so
-%{_pkglibdir}/interface/libxosd_interface.la
 
 %files input-audiofile
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libaf.so
-%{_pkglibdir}/input/libaf.la
 
 %files input-flac
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libflac_in.so
-%{_pkglibdir}/input/libflac_in.la
 
 %files input-mad
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libmad_in.so
-%{_pkglibdir}/input/libmad_in.la
 
 %files input-mikmod
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libmod.so
-%{_pkglibdir}/input/libmod.la
 
 %files input-sndfile
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libsndfile_in.so
-%{_pkglibdir}/input/libsndfile_in.la
 
 %files input-vorbis
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/input/libvorbis_in.so
-%{_pkglibdir}/input/libvorbis_in.la
 
 %files output-alsa
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libalsa_out.so
-%{_pkglibdir}/output/libalsa_out.la
 
 %files output-esound
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libesound_out.so
-%{_pkglibdir}/output/libesound_out.la
 
 %files output-jack
 %defattr(644,root,root,755)
-%{_pkglibdir}/output/libjack_out.la
 %attr(755,root,root) %{_pkglibdir}/output/libjack_out.so
 
 %files output-nas
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/output/libnas_out.so
-%{_pkglibdir}/output/libnas_out.la
 
 %files scopes-gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/scopes/libblurscope.so
-%{_pkglibdir}/scopes/libblurscope.la
 %attr(755,root,root) %{_pkglibdir}/scopes/liblevelmeter.so
-%{_pkglibdir}/scopes/liblevelmeter.la
 %attr(755,root,root) %{_pkglibdir}/scopes/liblogbarfft.so
-%{_pkglibdir}/scopes/liblogbarfft.la
 %attr(755,root,root) %{_pkglibdir}/scopes/libmonoscope.so
-%{_pkglibdir}/scopes/libmonoscope.la
 %attr(755,root,root) %{_pkglibdir}/scopes/libspacescope.so
-%{_pkglibdir}/scopes/libspacescope.la
 %attr(755,root,root) %{_pkglibdir}/scopes/libsynaescope.so
-%{_pkglibdir}/scopes/libsynaescope.la
 
 %files scopes-opengl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/scopes/liboglspectrum.so
-%{_pkglibdir}/scopes/liboglspectrum.la
-
-%files lib
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
 
 %files devel
 %defattr(644,root,root,755)
