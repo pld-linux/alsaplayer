@@ -12,7 +12,7 @@ BuildRequires:  audiofile-devel
 BuildRequires:  libmikmod-devel
 BuildRequires:	glib-devel
 BuildRequires:	gtk+-devel
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%{_libdir}/%{name}
 
