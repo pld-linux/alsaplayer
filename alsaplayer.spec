@@ -1,11 +1,13 @@
 Summary:	Alsaplayer
 Name:		alsaplayer
-Version:	0.99.21
+Version:	0.99.30
 Release:	1
 Copyright:	Opensource
 Group:		Applications/Multimedia
-Source:		http://www.alsa-project.org/~andy/alsaplayer-%{version}.%{release}.tar.gz
+Source:		http://www.alsa-project.org/~andy/alsaplayer-%{version}.tar.gz
 Requires: 	glib-1.2.1 gtk+-1.2.1
+BuildRequires:  alsa-devel
+BuildRequires:  esound-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -58,7 +60,7 @@ General features:
      Y2K complient (doh!)
 
 %prep
-%setup -q -n alsaplayer-%{version}.%{release}
+%setup -q
 
 %build
 %configure
