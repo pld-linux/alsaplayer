@@ -12,7 +12,7 @@ Name:		alsaplayer
 Version:	0.99.72
 Release:	1
 License:	GPL
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-nas.patch
 Patch1:		%{name}-docs.patch
@@ -126,7 +126,7 @@ Ogólne cechy:
 %package input-mikmod
 Summary:	Alsaplayer plugin for playing mod files
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików mod
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-mikmod
@@ -138,7 +138,7 @@ Wtyczka do alsaplayera do odtwarzania plików mod.
 %package input-vorbis
 Summary:	Alsaplayer plugin for playing ogg/vorbis files
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-vorbis
@@ -150,7 +150,7 @@ Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
 %package input-audiofile
 Summary:	Alsaplayer plugin for playing wave audio formats
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików audio typu wave
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-audiofile
@@ -164,7 +164,7 @@ AIFC, WAVE, ...)
 %package input-mad
 Summary:	Alsaplayer plugin for playing MP3 files using MAD
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description input-mad
@@ -175,13 +175,13 @@ Wtyczka do alsaplayera do odtwarzania plików MP3 przy pomocy MAD.
 
 %package output-alsa
 # this plugin come in two versions, for alsa 0.5.x and 0.9.x
-# but this libraraies provide different .so number, so the
+# but this libraries provide different .so number, so the
 # version built will work only with correct alsa-lib version,
 # what we do want :-)
 
 Summary:	Alsaplayer plugin for playing through alsa drivers
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez sterowniki alsa
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description output-alsa
@@ -193,7 +193,7 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez sterowniki alsa.
 %package output-esound
 Summary:	Alsaplayer plugin for playing through esound daemon
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona esound
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description output-esound
@@ -205,7 +205,7 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona esound.
 %package output-nas
 Summary:	Alsaplayer plugin for playing through NAS daemon
 Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description output-nas
@@ -219,7 +219,7 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 #%package reader-curl
 #Summary:	Alsaplayer plugin for reading files from network
 #Summary(pl):	Wtyczka do alsaplayera do odczytu plików z sieci
-#Group:		X11/Applications/Multimedia
+#Group:		X11/Applications/Sound
 #Requires:	%{name} = %{version}
 #
 #%description reader-curl
@@ -255,7 +255,7 @@ Wtyczka do alsaplayera do wizualizacji z u¿yciem OpenGL.
 %package interface-gtk
 Summary:	GTK+ interface for Alsaplayer
 Summary(pl):	Interfejs GTK+ alsaplayera
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description interface-gtk
@@ -267,7 +267,7 @@ Interfejs GTK+ alsaplayera.
 %package lib
 Summary:	Library for remote control Alsaplayer
 Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
 %description lib
@@ -279,7 +279,7 @@ Biblioteka do zdalnego sterowania alsaplayerem.
 %package devel
 Summary:	Library for remote control Alsaplayer - development files
 Summary(pl):	Biblioteka do zdalnego sterowania alsaplayerem - pliki nag³ówkowe
-Group:		X11/Applications/Multimedia
+Group:		X11/Applications/Sound
 Requires:	%{name}-lib = %{version}
 
 %description devel
