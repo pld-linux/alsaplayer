@@ -4,6 +4,7 @@ Version:	0.99.31
 Release:	1
 Copyright:	Opensource
 Group:		X11/Applications/Multimedia
+Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 Source0:	http://www.alsa-project.org/~andy/%{name}-%{version}.tar.gz
 Requires:	gtk+-devel
