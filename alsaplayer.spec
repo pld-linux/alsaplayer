@@ -1,8 +1,9 @@
 Summary:	Alsaplayer
+Summary(pl):	Alsaplayer
 Name:		alsaplayer
 Version:	0.99.31
-Release:	1
-Copyright:	Opensource
+Release:	2
+License:	Opensource
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
@@ -13,6 +14,9 @@ BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	gtk+-devel
+BuildRequires:	libtool
+BuildRequires:	automake
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%{_libdir}/%{name}
@@ -68,7 +72,10 @@ General features:
 %setup -q
 
 %build
-%configure2_13
+libtoolize --copy --force
+aclocal
+autoconf
+%configure
 %{__make}
 
 %install
