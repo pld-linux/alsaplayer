@@ -2,27 +2,24 @@ Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.60
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
-Requires:	gtk+
+Patch0:		%{name}-nas.patch
+Patch1:		%{name}-docs.patch
 BuildRequires:	alsa-lib-devel
-BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
+BuildRequires:	esound-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	libmikmod-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	mad-devel
-BuildRequires:	gtk+-devel
+BuildRequires:	nas-devel
 BuildRequires:	libtool
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_pkglibdir	%{_libdir}/%{name}
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded
@@ -31,20 +28,20 @@ Features include:
 
 Input addons:
  - MP2 and MP3 support
- - Ogg Vorbis support
+ - Ogg Vorbis support (subpackage)
  - WAV support, 8-, 16-bit, mono, stereo, any sample rate
  - CDDA support, CD Digital Audio playback! and thus USB ready :)
  - Also plays files mapped by audiofs (CDDA)
  - MAD MPEG audio
- - Module support (mikmod)
+ - Module support (mikmod) (subpcakage)
 
 Output addons:
- - ALSA. Best supported of course :)
+ - ALSA. Best supported of course :) (subpackage)
  - OSS. Kernel native sound drivers
  - Sparc. UltraSparc sound drivers
  - SGI. SGI audio library driver
- - ESD. Enlightened sound daemon support
- - NAS. Network Audio System
+ - ESD. Enlightened sound daemon support (subpackage)
+ - NAS. Network Audio System (subpakcage)
  - null :-)
 
 Visual scopes:
@@ -78,20 +75,20 @@ solidnie przeæwiczyæ sterowniki i bibliotekê ALSA. Jego cechy to:
 
 Wej¶cie:
  - obs³uga MP2 i MP3
- - obs³uga Ogg Vorbis
+ - obs³uga Ogg Vorbis (w podpakiecie)
  - obs³uga WAV, 8 i 16-bitowych, mono, stereo, dowolna czêstotliwo¶æ
  - obs³uga CD Digital Audio
  - odtwarzanie plików podmapowanych przez audiofs (CDDA)
  - obs³uga MAD - MPEG Audio
- - obs³uga modu³ów (mikmod)
+ - obs³uga modu³ów (mikmod) (w podpakiecie)
 
 Wyj¶cie:
- - ALSA - oczywi¶cie najlepiej obs³ugiwana :)
  - OSS - natywne sterowniki z j±dra
+ - ALSA - oczywi¶cie najlepiej obs³ugiwana :) (w podpakiecie)
  - Sparc - sterowniki d¼wiêku dla UltraSparca
  - SGI - biblioteka sterowników d¼wiêku SGI
- - ESD - obs³uga O¶wieconego demona d¼wiêku
- - NAS - Sieciowego Systemu Audio
+ - ESD - obs³uga O¶wieconego demona d¼wiêku (w podpakiecie)
+ - NAS - Sieciowego Systemu Audio (w podpakiecie)
  - null :-)
 
 Wizualizacja:
@@ -111,23 +108,124 @@ Ogólne cechy:
  - programowa kontrola g³o¶no¶ci i balansu
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
+%package input-mikmod
+Summary:	Alsaplayer plugin for playing mod files
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików mod
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description input-mikmod
+Alsaplayer plugin for playing mod files.
+
+%description input-mikmod -l pl 
+Wtyczka do alsaplayera do odtwarzania plików mod.
+
+%package input-vorbis
+Summary:	Alsaplayer plugin for playing ogg/vorbis files
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description input-vorbis
+Alsaplayer plugin for playing ogg/vorbis files.
+
+%description input-vorbis -l pl 
+Wtyczka do alsaplayera do odtwarzania plików ogg/vorbis.
+
+%package input-audiofile
+Summary:	Alsaplayer plugin for playing wave audio formats
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania plików audio typu wave
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description input-audiofile
+Alsaplayer plugin for playing wave audio formats (like AIFF, AIFC,
+WAVE, ...).
+
+%description input-audiofile -l pl 
+Wtyczka do alsaplayera do odtwarzania plików audio typa wave (AIFF,
+AIFC, WAVE, ...)
+
+%package output-alsa
+# this plugin come in two versions, for alsa 0.5.x and 0.9.x
+# but this libraraies provide different .so number, so the
+# version built will work only with correct alsa-lib version,
+# what we do want :-)
+
+Summary:	Alsaplayer plugin for playing through alsa drivers
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez drivery alsa
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description output-alsa
+Alsaplayer plugin for playing sound through alsa drivers.
+
+%description output-alsa -l pl 
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez drivery alsa.
+
+%package output-esound
+Summary:	Alsaplayer plugin for playing through esound daemon
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona esound
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description output-esound
+Alsaplayer plugin for playing sound through esound daemon.
+
+%description output-esound -l pl 
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona esound.
+
+%package output-nas
+Summary:	Alsaplayer plugin for playing through NAS daemon
+Summary(pl):	Wtyczka do alsaplayera do odtwarzania przez demona NAS
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description output-nas
+Alsaplayer plugin for playing sound through NAS (network audio
+system) daemon.
+
+%description output-nas -l pl 
+Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
+(network audio system).
+
+%define		_pkglibdir	%{_libdir}/%{name}
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
-rm -f missing
 libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c -f
-%configure
+%configure \
+	--enable-alsa \
+	--enable-audiofile \
+	--enable-esd \
+	--enable-gtk \
+	--enable-mikmod \
+	--enable-nas \
+	--enable-oggvorbis \
+	--enable-opengl \
+	--enable-oss \
+%ifarch sparc	
+	--enable-sparc
+%endif
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-gzip -9nf AUTHORS README
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+gzip -9nf AUTHORS README ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -136,4 +234,35 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/alsaplayer
-%{_pkglibdir}
+%dir %{_pkglibdir}
+%dir %{_pkglibdir}/input
+%{_pkglibdir}/input/libcdda.*
+%{_pkglibdir}/input/libwav.*
+%{_pkglibdir}/input/libmad_in.*
+%dir %{_pkglibdir}/output
+%{_pkglibdir}/output/liboss.*
+%{_pkglibdir}/output/libnull.*
+%ifarch sparc
+%{_pkglibdir}/output/libsparc.*
+%endif
+%{_pkglibdir}/interface/lib*.*
+%{_pkglibdir}/scopes/lib*.*
+%{_mandir}/man*/*
+
+%files input-mikmod
+%{_pkglibdir}/input/libmod.*
+
+%files input-vorbis
+%{_pkglibdir}/input/libvorbis_in.*
+
+%files input-audiofile
+%{_pkglibdir}/input/libaf.*
+
+%files output-alsa
+%{_pkglibdir}/output/libalsa.*
+
+%files output-esound
+%{_pkglibdir}/output/libesound.*
+
+%files output-nas
+%{_pkglibdir}/output/libnas.*
