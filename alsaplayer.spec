@@ -49,7 +49,7 @@ Input addons:
  - MAD MPEG audio
  - Module support (mikmod) (subpcakage)
  - FLAC support
- 
+
 Output addons:
  - ALSA. Best supported of course :) (subpackage)
  - OSS. Kernel native sound drivers
@@ -67,7 +67,7 @@ Visual scopes:
  - Spacescope
  - FFTscope
  - FFTscope II
- - Spectrum GL 
+ - Spectrum GL
 
 General features:
  - Full speed (pitch) control, positive *and* negative! (First Linux
