@@ -3,7 +3,8 @@ Name:		alsaplayer
 Version:	0.99.31
 Release:	1
 Copyright:	Opensource
-Group:		Applications/Multimedia
+Group:		X11/Applications/Multimedia
+Group(pl):	X11/Aplikacje/Multimedia
 Source0:	http://www.alsa-project.org/~andy/%{name}-%{version}.tar.gz
 Requires:	gtk+-devel
 BuildRequires:	alsa-lib-devel
@@ -14,6 +15,9 @@ BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%{_libdir}/%{name}
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 AlsaPlayer is a new type of PCM player. It is heavily multi-threaded
