@@ -1,7 +1,7 @@
 #
 # Conditional build
 %bcond_without esound		# build without esound plugin
-%bcond_without flac		# build without flac plugin
+%bcond_without flac		# build without FLAC plugin
 %bcond_without jack		# build without jack plugin
 %bcond_without mikmod		# build without mikmod plugin
 %bcond_without nas		# build without nas plugin
