@@ -203,8 +203,8 @@ Wtyczka do alsaplayera do odtwarzania d¼wiêku przez demona NAS
 %build
 libtoolize --copy --force
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--enable-alsa \
 	--enable-audiofile \
