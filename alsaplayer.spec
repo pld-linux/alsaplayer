@@ -1,15 +1,12 @@
 # TODO:
-# - fix description
-# - add info about new subpackages (scopes, interface-gtk and others)
-# - are static libs really need?
+# - check description
 # - add/check translations
-# - add .desktop file (maybe icon too?)
-# - interface-daemon - maybe other name will be better
+# - add .desktop file
 Summary:	Alsaplayer - MP2/MP3/WAV/CD player
 Summary(pl):	Alsaplayer - odtwarzacz MP2/MP3/WAV/CD
 Name:		alsaplayer
 Version:	0.99.75
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		X11/Applications/Sound
 Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
@@ -73,7 +70,7 @@ Visual scopes:
  - Spacescope
  - FFTscope
  - FFTscope II
- - More being developed...
+ - Spectrum GL 
 
 General features:
  - Full speed (pitch) control, positive *and* negative! (First Linux
@@ -89,7 +86,6 @@ General features:
  - Effects stream
  - Software based volume/pan control
  - Accurate scope/audio syncing using ALSA features
- - Portable (well, we'll see about that :)
 
 %description -l pl
 AlsaPlayer to nowy rodzaj odtwarzacza PCM. Jest wielow±tkowy i próbuje
@@ -112,14 +108,15 @@ Wyj¶cie:
  - SGI - biblioteka sterowników d¼wiêku SGI
  - ESD - obs³uga O¶wieconego demona d¼wiêku (w podpakiecie)
  - NAS - Sieciowego Systemu Audio (w podpakiecie)
- - wyj¶cie JACK
+ - JACK - zestaw po³±czeñ d¼wiêku o ma³ych opó¼nieniach (w podpakiecie)
  - null :-)
 
 Wizualizacja:
  - Stereoskop
  - Monoskop
  - Wska¼nik poziomu d¼wiêku
- - inne, wkrótce wiêcej...
+ - Wska¼niki oparte o analize FFT
+ - analizator spektrum sygna³u w oparciu o OpenGL
 
 Ogólne cechy:
  - Kontrola szybko¶ci (w obie strony)
@@ -128,7 +125,9 @@ Ogólne cechy:
  - wielow±tkowo¶æ
  - interfejs graficzny bazuj±cy na gtk+
  - operacje bez GUI na potrzeby skryptów
+ - tryb Informacje-na-ekranie oparty o xosd
  - architektura wtyczek
+ - tryb "czasu rzeczywistego" daj±cy opó¼nienia rzêdu 5ms
  - programowa kontrola g³o¶no¶ci i balansu
  - synchronizacja d¼wiêku i wska¼ników przy u¿yciu mo¿liwo¶ci ALSA
 
@@ -290,10 +289,10 @@ Summary(pl):	Interfejs demona alsaplayera
 Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}
 
-%description interface-daemon
+%description daemon
 Deamon interface for Alsaplayer.
 
-%description interface-daemon -l pl
+%description daemon -l pl
 Interfejs demona alsaplayera.
 
 %package interface-gtk
@@ -432,7 +431,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_pkglibdir}/output/libsparc_out.so
 %endif
 
-%files interface-daemon
+%files daemon
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libdaemon_interface.so
 
