@@ -426,7 +426,7 @@ rm -rf $RPM_BUILD_ROOT
 echo
 echo "Remember to install appropriate alsaplayer-input-* plugins"
 echo "for files you want to play, for example:"
-echo "alsaplayer-input-mad to play mp3s."
+echo "alsaplayer-input-mad to play MP3s."
 echo
 
 %postun -p /sbin/ldconfig
