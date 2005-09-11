@@ -409,8 +409,8 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-install -c %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-install -c %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
