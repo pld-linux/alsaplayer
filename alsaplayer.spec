@@ -26,18 +26,20 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_esound:BuildRequires:	esound-devel}
+%{?with_esound:BuildRequires:	esound-devel >= 0.2.4}
 %{?with_flac:BuildRequires:	flac-devel >= 1.1.3}
 BuildRequires:	gtk+-devel
+BuildRequires:	gtk+2-devel >= 1:2.0.3
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1}
 %{?with_flac:BuildRequires:	libid3tag-devel}
 BuildRequires:	libmad-devel
 %{?with_mikmod:BuildRequires:	libmikmod-devel}
-BuildRequires:	libsndfile-devel
+BuildRequires:	libsndfile-devel >= 1.0.4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 %{?with_nas:BuildRequires:	nas-devel}
+BuildRequires:	pkgconfig
 BuildRequires:	xosd-devel
 Requires(post):	/sbin/ldconfig
 Requires:	alsaplayer_output
@@ -240,6 +242,19 @@ GTK+ interface for Alsaplayer.
 
 %description interface-gtk -l pl.UTF-8
 Interfejs GTK+ alsaplayera.
+
+%package interface-gtk2
+Summary:	GTK+ 2 interface for Alsaplayer
+Summary(pl.UTF-8):	Interfejs GTK+ 2 alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Provides:	alsaplayer_ui
+
+%description interface-gtk2
+GTK+ 2 interface for Alsaplayer.
+
+%description interface-gtk2 -l pl.UTF-8
+Interfejs GTK+2 alsaplayera.
 
 %package interface-text
 Summary:	Text interface for Alsaplayer
@@ -461,6 +476,10 @@ echo
 %files interface-gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libgtk_interface.so
+
+%files interface-gtk2
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/interface/libgtk2_interface.so
 
 %files interface-text
 %defattr(644,root,root,755)
