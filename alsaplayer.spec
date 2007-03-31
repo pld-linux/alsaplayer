@@ -9,12 +9,12 @@
 Summary:	Alsaplayer - CD/FLAC/MOD/MP3/Ogg/WAV player
 Summary(pl):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
 Name:		alsaplayer
-Version:	0.99.76
-Release:	5
+Version:	0.99.77
+Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	ftp://ftp.alsa-project.org/pub/people/andy/%{name}-%{version}.tar.bz2
-# Source0-md5:	a5566c15dbae1f5c86a08482eb405725
+Source0:	http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
+# Source0-md5:	3280795b199ae1bb245559ccbbca5c02
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-docs.patch
@@ -26,18 +26,19 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_esound:BuildRequires:	esound-devel}
+%{?with_esound:BuildRequires:	esound-devel >= 0.2.4}
 %{?with_flac:BuildRequires:	flac-devel >= 1.1.3}
 BuildRequires:	gtk+-devel
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1}
 %{?with_flac:BuildRequires:	libid3tag-devel}
 BuildRequires:	libmad-devel
 %{?with_mikmod:BuildRequires:	libmikmod-devel}
-BuildRequires:	libsndfile-devel
+BuildRequires:	libsndfile-devel >= 1.0.4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 %{?with_nas:BuildRequires:	nas-devel}
+BuildRequires:	pkgconfig
 BuildRequires:	xosd-devel
 Requires(post):	/sbin/ldconfig
 Requires:	alsaplayer_output
@@ -240,6 +241,19 @@ GTK+ interface for Alsaplayer.
 
 %description interface-gtk -l pl
 Interfejs GTK+ alsaplayera.
+
+%package interface-gtk2
+Summary:	GTK+ 2 interface for Alsaplayer
+Summary(pl):	Interfejs GTK+ 2 alsaplayera
+Group:		X11/Applications/Sound
+Requires:	%{name} = %{version}-%{release}
+Provides:	alsaplayer_ui
+
+%description interface-gtk2
+GTK+ 2 interface for Alsaplayer.
+
+%description interface-gtk2 -l pl
+Interfejs GTK+2 alsaplayera.
 
 %package interface-text
 Summary:	Text interface for Alsaplayer
@@ -461,6 +475,10 @@ echo
 %files interface-gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/interface/libgtk_interface.so
+
+%files interface-gtk2
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_pkglibdir}/interface/libgtk2_interface.so
 
 %files interface-text
 %defattr(644,root,root,755)
