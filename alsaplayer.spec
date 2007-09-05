@@ -27,7 +27,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_esound:BuildRequires:	esound-devel >= 0.2.4}
-%{?with_flac:BuildRequires:	flac-devel >= 1.1.3}
+%{?with_flac:BuildRequires:	flac-c++-devel >= 1.2.0}
 BuildRequires:	gtk+2-devel >= 1:2.0.3
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1}
 %{?with_flac:BuildRequires:	libid3tag-devel}
