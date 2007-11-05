@@ -236,6 +236,7 @@ Summary(pl.UTF-8):	Interfejs GTK+ 2 alsaplayera
 Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}-%{release}
 Provides:	alsaplayer_ui
+Obsoletes:	alsaplayer-interface-gtk
 
 %description interface-gtk2
 GTK+ 2 interface for Alsaplayer.
@@ -423,7 +424,7 @@ rm -f $RPM_BUILD_ROOT%{_pkglibdir}/output/*.{a,la}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/reader/*.{a,la}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/scopes2/*.{a,la}
 
-%{find_lang} %{name}
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
