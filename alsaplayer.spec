@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
 Name:		alsaplayer
 Version:	0.99.80
 Release:	1
-License:	GPLv3
+License:	GPL v3+
 Group:		Applications/Sound
 Source0:	http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
 # Source0-md5:	04f8c2321a37d15f40f9ee21251c6202
@@ -41,6 +41,9 @@ BuildRequires:	xosd-devel
 Requires(post):	/sbin/ldconfig
 Requires:	alsaplayer_output
 Requires:	alsaplayer_ui
+Suggests:	%{name}-input-audiofile
+Suggests:	%{name}-input-mad
+Suggests:	%{name}-input-vorbis
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -425,21 +428,15 @@ rm -f $RPM_BUILD_ROOT%{_pkglibdir}/scopes2/*.{a,la}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-echo
-echo "Remember to install appropriate alsaplayer-input-* plugins"
-echo "for files you want to play, for example:"
-echo "alsaplayer-input-mad to play MP3s."
-echo
-
+%post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README ChangeLog
 %attr(755,root,root) %{_bindir}/alsaplayer
-%attr(755,root,root) %{_libdir}/libalsaplayer.so.0.0.2
+%attr(755,root,root) %{_libdir}/libalsaplayer.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libalsaplayer.so.0
 %dir %{_pkglibdir}
 %dir %{_pkglibdir}/input
 %dir %{_pkglibdir}/interface
