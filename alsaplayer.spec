@@ -10,12 +10,11 @@ Summary:	Alsaplayer - CD/FLAC/MOD/MP3/Ogg/WAV player
 Summary(pl.UTF-8):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
 Name:		alsaplayer
 Version:	0.99.80
-%define	pre	rc2
-Release:	0.%{pre}.1
+Release:	1
 License:	GPLv3
 Group:		Applications/Sound
-Source0:	http://www.alsaplayer.org/%{name}-%{version}-%{pre}.tar.bz2
-# Source0-md5:	bc8325c704f6cad167236055e1ff3ebb
+Source0:	http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
+# Source0-md5:	04f8c2321a37d15f40f9ee21251c6202
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-docs.patch
@@ -373,7 +372,7 @@ Alsaplayer static library.
 Biblioteka statyczna Alsaplayera.
 
 %prep
-%setup -q -n %{name}-%{version}-%{pre}
+%setup -q
 %patch0 -p1
 
 %build
