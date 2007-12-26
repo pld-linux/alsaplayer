@@ -1,10 +1,9 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Alsaplayer
 Name[pl]=Alsaplayer
 Comment=MP3/OGG/FLAC/WAV/MOD/CD Player
 Comment[pl]=Odtwarzacz formatów CD/FLAC/MOD/MP3/OGG/WAV
-Icon=alsaplayer.png
+Icon=alsaplayer
 Exec=alsaplayer
 Terminal=false
 Type=Application
