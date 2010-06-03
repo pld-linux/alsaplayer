@@ -1,6 +1,6 @@
 #
 # Conditional build
-%bcond_without	esound		# build without esound plugin
+%bcond_with	esound		# build without esound plugin
 %bcond_without	flac		# build without FLAC plugin
 %bcond_without	jack		# build without jack plugin
 %bcond_without	mikmod		# build without mikmod plugin
@@ -10,7 +10,7 @@ Summary:	Alsaplayer - CD/FLAC/MOD/MP3/Ogg/WAV player
 Summary(pl.UTF-8):	Alsaplayer - odtwarzacz CD/FLAC/MOD/MP3/Ogg/WAV
 Name:		alsaplayer
 Version:	0.99.80
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/Sound
 Source0:	http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
