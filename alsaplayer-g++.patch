@@ -1,0 +1,20 @@
+--- alsaplayer-0.99.80/input/flac/FlacPlugin.cpp.orig	2007-10-29 22:00:16.000000000 +0100
++++ alsaplayer-0.99.80/input/flac/FlacPlugin.cpp	2010-06-03 16:59:52.987826407 +0200
+@@ -239,7 +239,7 @@
+     else
+     {
+ 	// use stream name
+-	char * fname = strrchr (f->name ().c_str (), '/');
++	char * fname = (char *)strrchr (f->name ().c_str (), '/');
+ 	if (fname)
+ 	{
+ 	    fname++;
+@@ -270,7 +270,7 @@
+ 	if (strncmp(name, "http://", 7) == 0) {
+ 		return 0.0;
+ 	}
+-	char *ext = strrchr(name, '.');
++	char *ext = (char *)strrchr(name, '.');
+ 	if (!ext)
+ 		return 0.0;
+ 	ext++;
