@@ -18,3 +18,13 @@
  	if (!ext)
  		return 0.0;
  	ext++;
+--- alsaplayer-0.99.80/app/ControlSocket.cpp~	2007-07-08 16:27:31.000000000 +0200
++++ alsaplayer-0.99.80/app/ControlSocket.cpp	2010-06-03 17:06:32.781825835 +0200
+@@ -21,6 +21,7 @@
+ #include <cstdio>
+ #include <cstdlib>
+ #include <unistd.h>
++#include <limits.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/socket.h>
