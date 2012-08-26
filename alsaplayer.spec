@@ -21,16 +21,17 @@ Patch0:		%{name}-docs.patch
 URL:		http://www.alsaplayer.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	alsa-lib-devel
-BuildRequires:	audiofile-devel
-BuildRequires:	autoconf
+BuildRequires:	audiofile-devel >= 0.1.7
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 %{?with_esound:BuildRequires:	esound-devel >= 0.2.4}
 %{?with_flac:BuildRequires:	flac-c++-devel >= 1.2.0}
-BuildRequires:	gtk+2-devel >= 1:2.0.3
+BuildRequires:	glib2-devel >= 2.0.3
+BuildRequires:	gtk+2-devel >= 2:2.10.0
 %{?with_jack:BuildRequires:	jack-audio-connection-kit-devel >= 0.69.1}
 %{?with_flac:BuildRequires:	libid3tag-devel}
 BuildRequires:	libmad-devel
-%{?with_mikmod:BuildRequires:	libmikmod-devel}
+%{?with_mikmod:BuildRequires:	libmikmod-devel >= 3.1.7}
 BuildRequires:	libsndfile-devel >= 1.0.4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
@@ -159,6 +160,7 @@ Summary:	Alsaplayer plugin for playing WAVE audio formats using audiofile
 Summary(pl.UTF-8):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy użyciu audiofile
 Group:		Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	audiofile >= 0.1.7
 
 %description input-audiofile
 Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
@@ -197,6 +199,7 @@ Summary:	Alsaplayer plugin for playing mod files
 Summary(pl.UTF-8):	Wtyczka alsaplayera do odtwarzania plików mod
 Group:		Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	libmikmod >= 3.1.7
 
 %description input-mikmod
 Alsaplayer plugin for playing mod files.
@@ -209,6 +212,7 @@ Summary:	Alsaplayer plugin for playing WAVE audio formats using libsndfile
 Summary(pl.UTF-8):	Wtyczka alsaplayera do odtwarzania plików audio typu WAVE przy użyciu libsndfile
 Group:		Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	libsndfile >= 1.0.4
 
 %description input-sndfile
 Alsaplayer plugin for playing WAVE audio formats (like AIFF, AIFC,
@@ -235,6 +239,7 @@ Summary:	GTK+ 2 interface for Alsaplayer
 Summary(pl.UTF-8):	Interfejs GTK+ 2 alsaplayera
 Group:		X11/Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	gtk+2 >= 2:2.10.0
 Provides:	alsaplayer_ui
 Obsoletes:	alsaplayer-interface-gtk
 
@@ -288,6 +293,7 @@ Summary:	Alsaplayer plugin for playing through esound daemon
 Summary(pl.UTF-8):	Wtyczka alsaplayera do odtwarzania przez demona esound
 Group:		Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	esound-libs >= 0.2.4
 Provides:	alsaplayer_output
 
 %description output-esound
@@ -316,6 +322,7 @@ Summary:	Alsaplayer plugin for playing sound through JACK
 Summary(pl.UTF-8):	Wtyczka alsaplayera do odtwarzania dźwięku przez JACK-a
 Group:		Applications/Sound
 Requires:	%{name} = %{version}-%{release}
+Requires:	jack-audio-connection-kit-libs >= 0.69.1
 Provides:	alsaplayer_output
 
 %description output-jack
@@ -380,26 +387,21 @@ Biblioteka statyczna Alsaplayera.
 %patch0 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
-CPPFLAGS=" -I/usr/X11R6/include"
-LDFLAGS="%{rpmldflags} -L/usr/X11R6/lib"
-export CPPFLAGS LDFLAGS
 %configure \
-	%{?with_esound:--en}%{!?with_esound:--dis}able-esd \
-	%{?with_flac:--en}%{!?with_flac:--dis}able-flac \
-	%{?with_flac:--en}%{!?with_flac:--dis}able-oggflac \
-	%{?with_jack:--en}%{!?with_jack:--dis}able-jack \
-	%{?with_mikmod:--en}%{!?with_mikmod:--dis}able-mikmod \
-	%{?with_nas:--en}%{!?with_nas:--dis}able-nas \
-	%{?with_esound:--en}%{!?with_esound:--dis}able-esd \
 	--enable-alsa \
 	--enable-audiofile \
+	--enable-esd%{!?with_esound:=no} \
+	--enable-flac%{!?with_flac:=no} \
 	--enable-gtk2 \
-	--enable-oggflac \
+	--enable-jack%{!?with_jack:=no} \
+	--enable-mikmod%{!?with_mikmod:=no} \
+	--enable-nas%{!?with_nas:=no} \
+	--enable-oggflac%{!?with_flac:=no} \
 	--enable-oggvorbis \
 	--enable-opengl \
 	--enable-oss \
@@ -412,17 +414,16 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/output/*.{a,la}
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/reader/*.{a,la}
-rm -f $RPM_BUILD_ROOT%{_pkglibdir}/scopes2/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_pkglibdir}/input/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_pkglibdir}/interface/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_pkglibdir}/output/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_pkglibdir}/reader/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_pkglibdir}/scopes2/*.{a,la}
 
 %find_lang %{name}
 
