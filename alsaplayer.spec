@@ -18,6 +18,7 @@ Source0:	http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-docs.patch
+Patch1:		configure.patch
 URL:		http://www.alsaplayer.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	alsa-lib-devel
@@ -385,6 +386,7 @@ Biblioteka statyczna Alsaplayera.
 %prep
 %setup -q
 %patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__libtoolize}

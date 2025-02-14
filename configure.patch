@@ -1,0 +1,10 @@
+--- alsaplayer-0.99.81/acinclude.m4.orig	2010-11-07 22:19:32.000000000 +0100
++++ alsaplayer-0.99.81/acinclude.m4	2025-02-14 22:36:31.435835349 +0100
+@@ -2656,6 +2656,7 @@
+ #include <mikmod.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ 
+ char* my_strdup (char *str)
+ {
